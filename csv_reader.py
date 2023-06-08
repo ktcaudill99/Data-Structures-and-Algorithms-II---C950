@@ -1,11 +1,11 @@
 import csv
-from hashtable import hashtable
+from hashtable import HashTable
 
 # Read CSV files
-with open('WGUPS Package File') as csvfile:
+with open('packages_data.csv') as csvfile:
     read_csv = csv.reader(csvfile, delimiter=',')
 
-    hash_map = hashtable()  # Create an instance of hashtable class
+    hashtable = HashTable()  # Create an instance of hashtable class
     first_delivery = []  # first truck delivery
     second_delivery = [] # second truck delivery
     final_delivery = [] # final truck delivery
@@ -48,7 +48,7 @@ with open('WGUPS Package File') as csvfile:
             second_delivery.append(value) if len(second_delivery) < len(final_delivery) else final_delivery.append(value)
 
         # Insert value into the hash table
-        hash_map.insert(id, value)
+        hashtable.insert(id, value)
 
     # Get packages on the first delivery -> O(1)
     def get_first_delivery():
@@ -63,5 +63,5 @@ with open('WGUPS Package File') as csvfile:
         return final_delivery
 
     # Get full list of packages -> O(1)
-    def get_hash_map():
-        return hash_map
+    def get_hash_table():
+        return hashtable
