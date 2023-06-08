@@ -14,10 +14,23 @@ class Truck:
         self.indices = indices
         self.total_time = total_time
         self.total_mileage = total_mileage
+        self.total_packages_delivered = 0  
+        self.total_packages_not_delivered = len(packages)
 
     def __str__(self):
         return "Truck ID: %s | Total Packages: %s | Total Distance: %s | Total Time: %s | Total Mileage: %s" % (
             self.id, len(self.packages), self.calculate_total_distance(), self.total_time, self.total_mileage)
+
+    def deliver_package(self, package):
+        # Here you should put the code that changes the package's status to delivered
+        # and remove the package from the truck's packages.
+        # For the sake of example, I'm just going to assume that package is the id of the package.
+        for i in range(len(self.packages)):
+            if self.packages[i].id == package:
+                self.packages.pop(i)
+                self.total_packages_delivered += 1
+                self.total_packages_not_delivered -= 1
+                break
 
     def calculate_total_distance(self):
         total_distance = 0

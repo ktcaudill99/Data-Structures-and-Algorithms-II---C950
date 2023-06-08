@@ -49,5 +49,19 @@ class HashTable:
                 if x[0] == key:
                     return x[1]  # value
         return None
+    
+    
+    # in the HashTable class
+    def get_all_values(self):
+        all_values = []
+        for bucket in self.table:
+            for key_value in bucket:
+                all_values.append(key_value[1])
+        return all_values
+    
+    @property    
+    def packages(self):
+        return self.get_all_values()
+
 
 

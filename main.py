@@ -130,15 +130,19 @@ if __name__ == '__main__':
     cur_date = now.strftime("%Y-%m-%d\n")
     print(""" #Today is          :""", cur_date, """#Current time      :""", cur_time)
 
+
+    for package in data.get_all_values():
+        print(package)
+
     # display package data
     print("WGUPS Package Data")
     print("------------------------------------------------------------------------------------------------------------------------")
     print("Package ID | Address | City | State | Zip | Deadline | Weight | Status | Delivery Time | Notes")
     print("------------------------------------------------------------------------------------------------------------------------")
-    for package in data.packages:
+    for package in data.get_all_values():
         print(package)
     print("------------------------------------------------------------------------------------------------------------------------")
-    print("Total Packages Delivered: ", truck1.total_packages_delivered + truck2.total_packages_delivered + truck3.total_packages_delivered)
+    print("Total Packages Delivered: ", len(truck1.packages) + len(truck2.packages) + len(truck3.packages))
     print("Total Packages Not Delivered: ", truck1.total_packages_not_delivered + truck2.total_packages_not_delivered + truck3.total_packages_not_delivered)
     print("Total Packages: ", len(data.packages))
     print("Total Distance: ",)# total_distance)
