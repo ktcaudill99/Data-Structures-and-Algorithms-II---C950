@@ -1,10 +1,10 @@
 import datetime
-from hashtable import HashTable
+from hashtable import *
 from distance import *
 from route import *
 from truck import  *
-from csv_reader import get_hash_table
-from package import get_total_distance 
+from csv_reader import *
+from package import *
 import re
 
 # reusable print  functions :> O(1)
@@ -39,11 +39,11 @@ def print_pk_detail(count):
 if __name__ == '__main__':
     # create objects and load csv data
     data = HashTable()
-    data.load_csv('packages_data.csv')
+   # data.load_csv('packages_data.csv')
     # create distance and route objects
-    distance = Distance()
-    route = route(distance)
-    ts = truck()
+   # distance = Distance()
+    #route = route(distance)
+    #ts = truck()
     # ts.sort_packages_into_priorities(data.packages)
     # # optimize truck routes
     # optimized_truck_1 = route.optimize_route(ts.truck1)

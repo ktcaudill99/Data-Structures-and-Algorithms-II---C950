@@ -2,7 +2,7 @@ import csv
 from hashtable import HashTable
 
 # Read CSV files
-with open('packages_data.csv') as csvfile:
+with open('c950/packages_data.csv') as csvfile:
     read_csv = csv.reader(csvfile, delimiter=',')
 
     hashtable = HashTable()  # Create an instance of hashtable class

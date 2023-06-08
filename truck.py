@@ -2,9 +2,9 @@ import csv
 import datetime
 
 # Read CSV files
-with open('distance_data.csv') as csvfile_1:
+with open('c950/distance_data.csv') as csvfile_1:
     distance_csv = list(csv.reader(csvfile_1, delimiter=','))
-with open('distance_name_data.csv') as csvfile_2:
+with open('c950/distance_name_data.csv') as csvfile_2:
     distance_name_csv = list(csv.reader(csvfile_2, delimiter=','))
 
 class Truck:
