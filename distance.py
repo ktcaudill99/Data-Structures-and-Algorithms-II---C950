@@ -3,13 +3,15 @@ import datetime
 
 
 class Distance:
-    # get distance name data
-    with open('WGUPS Distance Name Table.csv') as distance_name_file:
-        name_reader = list(csv.reader(distance_name_file, delimiter=','))
+    # Initialize the class
+    def __init__(self):
+        # load distance name data
+        with open('WGUPS Distance Name Table.csv') as distance_name_file:
+            self.name_reader = list(csv.reader(distance_name_file, delimiter=','))
 
-    # get distance data
-    with open('WGUPS Distance Table.csv') as distance_file:
-        distance_reader = list(csv.reader(distance_file, delimiter=','))
+        # load distance data
+        with open('WGUPS Distance Table.csv') as distance_file:
+            self.distance_reader = list(csv.reader(distance_file, delimiter=','))
 
     # check distance from current location to another location
     def check_distance(self, current_location, from_location):
@@ -31,9 +33,9 @@ class Distance:
         truck_timeline = []
         if name == 'truck1':
             truck_time = ['8:00:00']
-        if name == 'truck2':
+        elif name == 'truck2':
             truck_time = ['9:05:00']
-        if name == 'truck3':
+        elif name == 'truck3':
             truck_time = ['10:00:00']
         for t in truck:
             if truck[0] == t:
@@ -71,34 +73,42 @@ class Distance:
     def check_delivery_status(self, t, truck, t_time, name, id):
         delivery_time = self.check_delivery_time(truck, t_time, id)
         timestamp = self.get_delta_time(t)
-        if name == 'TRUCK 1':
-            truck_time = self.get_delta_time('8:00:00')
-        if name == 'TRUCK 2':
-            truck_time = self.get_delta_time('9:05:00')
-        if name == 'TRUCK 3':
-            truck_time = self.get_delta_time('10:00:00')
+        truck_time = {'TRUCK 1': self.get_delta_time('8:00:00'),
+                      'TRUCK 2': self.get_delta_time('9:05:00'),
+                      'TRUCK 3': self.get_delta_time('10:00:00')}.get(name, None)
         if timestamp > delivery_time:
             return 'DELIVERED'
-        if timestamp <= delivery_time:
-            if timestamp < truck_time:
-                return 'AT_HUB'
-            else:
-                return 'ON_TRUCK'
+        elif timestamp <= delivery_time and timestamp >= truck_time:
+            return 'ON_TRUCK'
+        else:
+            return 'AT_HUB'
 
-    # calc the total distance traveled by the trucks
+       # calc the total distance traveled by the trucks
     def get_total_distance_traveled(self, truck):
         total_miles = 0
         for t in truck:
             if truck[0] == t:
-                pl = 0
-            cl = self.check_location_num_from_address(t.get_address())
-            d = self.check_distance(cl, pl)
-            pl = cl
-            total_miles += float(d)
-        # calc trip back to main hub
-        d = self.check_distance(cl, 0)
-        total_miles += float(d)
-        return round(total_miles, 2)
+                previous_location = 0
+            current_location = self.check_location_num_from_address(t.get_address())
+            distance = self.check_distance(current_location, previous_location)
+            total_miles += float(distance)
+            previous_location = current_location
+        return total_miles
+
+    # # calc the total distance traveled by the trucks
+    # def get_total_distance_traveled(self, truck):
+    #     total_miles = 0
+    #     for t in truck:
+    #         if truck[0] == t:
+    #             pl = 0
+    #         cl = self.check_location_num_from_address(t.get_address())
+    #         d = self.check_distance(cl, pl)
+    #         pl = cl
+    #         total_miles += float(d)
+    #     # calc trip back to main hub
+    #     d = self.check_distance(cl, 0)
+    #     total_miles += float(d)
+    #     return round(total_miles, 2)
 
     # display data based off time input
     def display_data_from_time(self, name, truck, truck_timeline, time, distance):

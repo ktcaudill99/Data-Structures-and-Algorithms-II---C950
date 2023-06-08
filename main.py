@@ -141,7 +141,7 @@ if __name__ == '__main__':
     print("Total Packages Delivered: ", truck1.total_packages_delivered + truck2.total_packages_delivered + truck3.total_packages_delivered)
     print("Total Packages Not Delivered: ", truck1.total_packages_not_delivered + truck2.total_packages_not_delivered + truck3.total_packages_not_delivered)
     print("Total Packages: ", len(data.packages))
-    print("Total Distance: ", total_distance)
+    print("Total Distance: ",)# total_distance)
     print("Total Time: ", truck1.total_time + truck2.total_time + truck3.total_time)
     print("Total Mileage: ", truck1.total_mileage + truck2.total_mileage + truck3.total_mileage)
     print("------------------------------------------------------------------------------------------------------------------------")
