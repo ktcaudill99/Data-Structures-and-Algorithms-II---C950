@@ -1,10 +1,10 @@
 import datetime
 from hashtable import HashTable
-#from Distance import Distance
-#from Route import Route
-#from truck import TruckSort
+from distance import *
+from route import *
+from truck import  *
 from csv_reader import get_hash_table
-from package import get_total_distance
+from package import get_total_distance 
 import re
 
 # reusable print  functions :> O(1)
@@ -41,9 +41,9 @@ if __name__ == '__main__':
     data = HashTable()
     data.load_csv('packages_data.csv')
     # create distance and route objects
-    # distance = Distance()
-    # route = Route(distance)
-    # ts = TruckSort()
+    distance = Distance()
+    route = route(distance)
+    ts = truck()
     # ts.sort_packages_into_priorities(data.packages)
     # # optimize truck routes
     # optimized_truck_1 = route.optimize_route(ts.truck1)
