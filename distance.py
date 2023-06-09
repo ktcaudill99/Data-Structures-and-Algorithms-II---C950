@@ -1,16 +1,18 @@
 import csv
 import datetime
+from turtle import distance
+#from turtle import distance
 
 
-class Distance:
+class DistanceCalc:
     # Initialize the class
     def __init__(self):
         # load distance name data
-        with open('WGUPS Distance Name Table.csv') as distance_name_file:
+        with open('c950/distance_name_data.csv') as distance_name_file:
             self.name_reader = list(csv.reader(distance_name_file, delimiter=','))
 
         # load distance data
-        with open('WGUPS Distance Table.csv') as distance_file:
+        with open('c950/distance_data.csv') as distance_file:
             self.distance_reader = list(csv.reader(distance_file, delimiter=','))
 
     # check distance from current location to another location
@@ -124,4 +126,9 @@ class Distance:
             s = 'ID: {:>2} -- Deadline: {:>6} -- Status: {:>6} -- Expected Delivery: {}'
             formatted_string = s.format(id, t.get_deadline(), ds, truck_timeline[i + 1])
             print(formatted_string)
+            
+def create_distance_calc():
+    return DistanceCalc()  # Create an instance of DistanceCalc class
+
+            
 

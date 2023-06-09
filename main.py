@@ -5,6 +5,7 @@ from route import *
 from truck import  *
 from csv_reader import *
 from package import *
+from distance import create_distance_calc
 import re
 
 # reusable print  functions :> O(1)
@@ -39,6 +40,10 @@ def print_pk_detail(count):
 if __name__ == '__main__':
     # create objects and load csv data
     data = HashTable()
+    #distance = create_distance_calc()
+    truck1, truck2, truck3 = create_trucks()
+    #distance = Distance().create_distance()
+    distance = create_distance_calc()
    # data.load_csv('packages_data.csv')
     # create distance and route objects
    # distance = Distance()
@@ -57,7 +62,7 @@ if __name__ == '__main__':
     # td2 = distance.get_total_distance_traveled(optimized_truck_2)
     # td3 = distance.get_total_distance_traveled(optimized_truck_3)
     # total_distance = td1 + td2 + td3
-
+    # # print total distance
     # # create truck objects
     # truck1 = ts.truck1
     # truck2 = ts.truck2
@@ -109,7 +114,18 @@ if __name__ == '__main__':
     # truck3.total_packages_delivered = len(optimized_truck_3)
 
     # # set truck total packages not delivered
-    # truck1.total_packages_not_delivered = 0
+    # truck1.total_packages_not_delivered = 0import csv
+import datetime
+
+# Read CSV files
+with open('c950/distance_data.csv') as csvfile_1:
+    distance_csv = list(csv.reader(csvfile_1, delimiter=','))
+with open('c950/distance_name_data.csv') as csvfile_2:
+    distance_name_csv = list(csv.reader(csvfile_2, delimiter=','))
+
+class Truck:
+    def __init__(self, id, packages, indices, total_time=0, total_mileage=0):
+        self.id = id
     # truck2.total_packages_not_delivered = 0
     # truck3.total_packages_not_delivered = 0
 

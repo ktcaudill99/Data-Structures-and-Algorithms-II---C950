@@ -62,6 +62,17 @@ class HashTable:
     @property    
     def packages(self):
         return self.get_all_values()
-
-
+    
+    
+    def __len__(self):
+        #print((self.table))
+        for item in self.table:
+            print(item)
+            print() 
+        #print(len(self.get_all_values()))
+        return len(self.get_all_values())
+        
+    
+    
+    
 

@@ -117,10 +117,14 @@ def get_shortest_route(_list, num, curr_location):
                 get_shortest_route(_list, 3, curr_location)
 
 # Insert 0 for the first index of each index list
-first_truck_indices.insert(0, '0')
-second_truck_indices.insert(0, '0')
-third_truck_indices.insert(0, '0')
+def create_trucks():
+    # Insert 0 for the first index of each index list
+    first_truck_indices.insert(0, '0')
+    second_truck_indices.insert(0, '0')
+    third_truck_indices.insert(0, '0')
 
-truck1 = Truck(1, first_truck, first_truck_indices)
-truck2 = Truck(2, second_truck, second_truck_indices)
-truck3 = Truck(3, third_truck, third_truck_indices)
+    truck1 = Truck(1, first_truck, first_truck_indices)
+    truck2 = Truck(2, second_truck, second_truck_indices)
+    truck3 = Truck(3, third_truck, third_truck_indices)
+    
+    return truck1, truck2, truck3
