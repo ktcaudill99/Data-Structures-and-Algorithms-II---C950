@@ -44,77 +44,7 @@ if __name__ == '__main__':
     truck1, truck2, truck3 = create_trucks()
     #distance = Distance().create_distance()
     distance = create_distance_calc()
-   # data.load_csv('packages_data.csv')
-    # create distance and route objects
-   # distance = Distance()
-    #route = route(distance)
-    #ts = truck()
-    # ts.sort_packages_into_priorities(data.packages)
-    # # optimize truck routes
-    # optimized_truck_1 = route.optimize_route(ts.truck1)
-    # optimized_truck_2 = route.optimize_route(ts.truck2)
-    # optimized_truck_3 = route.optimize_route(ts.truck3)
-    # truck_timeline_1 = distance.check_time(optimized_truck_1, 'truck1')
-    # truck_timeline_2 = distance.check_time(optimized_truck_2, 'truck2')
-    # truck_timeline_3 = distance.check_time(optimized_truck_3, 'truck3')
-    # # calc distance
-    # td1 = distance.get_total_distance_traveled(optimized_truck_1)
-    # td2 = distance.get_total_distance_traveled(optimized_truck_2)
-    # td3 = distance.get_total_distance_traveled(optimized_truck_3)
-    # total_distance = td1 + td2 + td3
-    # # print total distance
-    # # create truck objects
-    # truck1 = ts.truck1
-    # truck2 = ts.truck2
-    # truck3 = ts.truck3
 
-    # # set truck mileage
-    # truck1.mileage = td1
-    # truck2.mileage = td2
-    # truck3.mileage = td3
-
-    # # set truck timeline
-    # truck1.timeline = truck_timeline_1
-    # truck2.timeline = truck_timeline_2
-    # truck3.timeline = truck_timeline_3
-
-    # # set truck distance
-    # truck1.distance = td1
-    # truck2.distance = td2
-    # truck3.distance = td3
-
-    # # set truck packages
-    # truck1.packages = optimized_truck_1
-    # truck2.packages = optimized_truck_2
-    # truck3.packages = optimized_truck_3
-
-    # # set truck total distance
-    # truck1.total_distance = td1
-    # truck2.total_distance = td2
-    # truck3.total_distance = td3
-
-    # # set truck total packages
-    # truck1.total_packages = len(optimized_truck_1)
-    # truck2.total_packages = len(optimized_truck_2)
-    # truck3.total_packages = len(optimized_truck_3)
-
-    # # set truck total time
-    # truck1.total_time = truck_timeline_1
-    # truck2.total_time = truck_timeline_2
-    # truck3.total_time = truck_timeline_3
-
-    # # set truck total mileage
-    # truck1.total_mileage = td1
-    # truck2.total_mileage = td2
-    # truck3.total_mileage = td3
-
-    # # set truck total packages delivered
-    # truck1.total_packages_delivered = len(optimized_truck_1)
-    # truck2.total_packages_delivered = len(optimized_truck_2)
-    # truck3.total_packages_delivered = len(optimized_truck_3)
-
-    # # set truck total packages not delivered
-    # truck1.total_packages_not_delivered = 0import csv
 import datetime
 
 # Read CSV files
@@ -284,3 +214,92 @@ class Truck:
             print('Invalid entry!')
             exit()
 
+# #ideas---------------------------------------------------------------
+# from HashTable import HashTable
+# from Truck import Truck
+# from datetime import datetime, timedelta
+# from Package import Package
+# import re
+
+# # Create global variables
+# receiveing = HashTable()
+# global_time = datetime(2023,6,8,8,00)
+# truck1 = Truck(receiveing.handload_truck_1(), datetime(2023,6,8,9,5), 1, receiveing)
+# truck2 = Truck(receiveing.handload_truck_2(), datetime(2023,6,8,8,00), 2, receiveing)
+# truck3 = Truck(receiveing.handload_truck_3(), datetime(2023,6,8,23,59), 3, receiveing)
+
+# # The main function
+# def main():
+#     # TODO: Implement the main loop here. You will need to integrate the remaining 
+#     # parts of your code into the main function here. This will involve calling the 
+#     # relevant functions from the respective classes (Truck, HashTable, Package) at 
+#     # the right times and in the right order.
+
+#     # Main loop.  Prompts user for actions until exit is chosen. 
+#     while True:
+#         print(f''' 
+#         Current time = {global_time.hour}:{global_time.minute:>02}
+
+#         1) Set time of day
+#         2) Print current package & truck status
+#         3) Insert new package
+#         4) Lookup package based on address
+#         5) Lookup package based on city
+#         6) Lookup package based on zip code
+#         7) Lookup package based on weight
+#         8) Lookup package based on deadline
+#         9) Lookup package based on status
+#         0) Exit program
+#         ''')
+
+#         selection = input('Please select an option: ').strip()
+
+#         # 1) Set time of day
+#         if selection == '1':
+#             run_deliveries()
+
+#         # 2) Print current package & truck status
+#         elif selection == '2':
+#             print_status()
+
+#         # 3) Insert new package
+#         elif selection == '3':
+#             create_new_package()
+
+#         # 4) Lookup package based on address
+#         elif selection == '4':
+#             address = input('Enter the address you would like to lookup: ')
+#             receiveing.lookup('address', address)
+            
+#         # 5) Lookup package based on city
+#         elif selection == '5':
+#             city = input('Enter the city you would like to lookup: ')
+#             receiveing.lookup('city', city)
+
+#         # 6) Lookup package based on zip code
+#         elif selection == '6':
+#             zip_code = input('Enter the zip code you would like to lookup: ')
+#             receiveing.lookup('zip_code', zip_code)
+
+#         # 7) Lookup package based on weight
+#         elif selection == '7':
+#             weight = input('Enter the weight you would like to lookup: ')
+#             receiveing.lookup('weight', weight)
+
+#         # 8) Lookup package based on deadline
+#         elif selection == '8':
+#             deadline = input('Enter the deadline you would like to lookup: ')
+#             receiveing.lookup('deadline', deadline)
+
+#         # 9) Lookup package based on status
+#         elif selection == '9':
+#             status = input('Enter the status you would like to lookup: ')
+#             receiveing.lookup('status', status)
+
+#         # 0) Exit program
+#         elif selection == '0':
+#             print('Thank you for choosing WGUPS!\nGoodbye....')
+#             exit()
+
+#         # Invalid input
+       

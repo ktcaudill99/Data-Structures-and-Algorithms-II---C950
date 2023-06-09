@@ -67,5 +67,5 @@ with open('c950/packages_data.csv') as csvfile:
         return hashtable
     
 if __name__=="__main__":
-    print(len(get_hash_table()))
+    print(get_hash_table())
    # print(get_first_delivery())
