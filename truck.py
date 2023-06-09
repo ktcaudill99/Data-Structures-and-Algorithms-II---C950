@@ -27,6 +27,9 @@ class Truck:
         # For the sake of example, I'm just going to assume that package is the id of the package.
         for i in range(len(self.packages)):
             if self.packages[i].id == package:
+                # Update T1 and T2
+                self.packages[i].T1 = datetime.datetime.now()
+                self.packages[i].T2 = self.packages[i].T1 + datetime.timedelta(hours=self.packages[i].deadline)
                 self.packages.pop(i)
                 self.total_packages_delivered += 1
                 self.total_packages_not_delivered -= 1

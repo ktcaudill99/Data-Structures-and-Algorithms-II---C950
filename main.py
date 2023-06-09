@@ -180,42 +180,36 @@ if __name__ == '__main__':
         if user_input == 1:
             try:
                 for count in range(1, 41):
+                    package = get_hash_table().search(str(count))
 
-                    try:
-                        # Time variables (T1 : start time, T2: delivery time )
-                        t1_temp = get_hash_table().search(str(count))[9]
-                        t2_temp = get_hash_table().search(str(count))[10]
+                    t1_temp = package[9]
+                    t2_temp = package[10]
+                    
+                    (hrs1, mins1, secs1) = t1_temp.split(':')
+                    (hrs2, mins2, secs2) = t2_temp.split(':')
 
-                        (hrs1, mins1, secs1) = t1_temp.split(':')
-                        (hrs2, mins2, secs2) = t2_temp.split(':')
-
-                        T1 = datetime.timedelta(hours=int(hrs1), minutes=int(mins1), seconds=int(secs1))
-                        T2 = datetime.timedelta(hours=int(hrs2), minutes=int(mins2), seconds=int(secs2))
-
-                    except ValueError:
-                        pass
-
+                    T1 = datetime.timedelta(hours=int(hrs1), minutes=int(mins1), seconds=int(secs1))
+                    T2 = datetime.timedelta(hours=int(hrs2), minutes=int(mins2), seconds=int(secs2))
+     
                     # Determine which packages have left the hub
                     if T1 >= input_time:
-                        get_hash_table().search(str(count))[10] = 'At Hub'
-                        get_hash_table().search(str(count))[9] = t1_temp
+                        package[10] = 'At Hub'
+                        package[9] = t1_temp
                         print_status(count)  # Print package's current info
-
 
                     # Determine which packages have left but have not been delivered
                     elif T1 <= input_time:
                         if input_time < T2:
-                            get_hash_table().search(str(count))[10] = 'In transit'
-                            get_hash_table().search(str(count))[9] = t1_temp
+                            package[10] = 'In transit'
+                            package[9] = t1_temp
                             print_status(count)  # Print package's current info
 
                         # Determine which packages have already been delivered
                         else:
-                            get_hash_table().search(str(count))[10] = 'Delivered at ' + t2_temp
-                            get_hash_table().search(str(count))[9] = t1_temp
+                            package[10] = 'Delivered at ' + t2_temp
+                            package[9] = t1_temp
                             print_status(count)  # Print package's current info
                 break
-
 
             except IndexError:
                 print(IndexError)
@@ -226,57 +220,51 @@ if __name__ == '__main__':
 
 
 
-        # Case if user selects Option #2
-        # Get info for a single package at a particular time -> O(n)
-        # ------------------------------ CASE 2 : SINGLE PACKET REPORT ------------------------------------------------
+            # Case if user selects Option #2
+            # Get info for a single package at a particular time -> O(n)
+            # ------------------------------ CASE 2 : SINGLE PACKET REPORT ------------------------------------------------
         elif user_input == 2:
             try:
                 # Time variables (T1 : start time, T2: delivery time )
                 count = input('Enter a valid package ID: \n')
-                t1_temp = get_hash_table().search(str(count))[9]
-                t2_temp = get_hash_table().search(str(count))[10]
+                package = get_hash_table().search(str(count))
 
-                (hrs, mins, secs) = t1_temp.split(':')
-                (hrs, mins, secs) = t2_temp.split(':')
+                t1_temp = package[9]
+                t2_temp = package[10]
+                
+                (hrs1, mins1, secs1) = t1_temp.split(':')
+                (hrs2, mins2, secs2) = t2_temp.split(':')
 
-                T1 = datetime.timedelta(hours=int(hrs), minutes=int(mins), seconds=int(secs))
-                T2 = datetime.timedelta(hours=int(hrs), minutes=int(mins), seconds=int(secs))
+                T1 = datetime.timedelta(hours=int(hrs1), minutes=int(mins1), seconds=int(secs1))
+                T2 = datetime.timedelta(hours=int(hrs2), minutes=int(mins2), seconds=int(secs2))
+
 
                 print_pk_detail(count)  # prints specified packet's info
 
-                # Determine which packages have left the hub
+                    # Determine which packages have left the hub
                 if T1 >= input_time:
-
-                    get_hash_table().search(str(count))[10] = 'At Hub'
-                    get_hash_table().search(str(count))[9] = t1_temp
-
+                    package[10] = 'At Hub'
+                    package[9] = t1_temp
                     print_status(count)  # Print package's current delivery status
 
                 # Determine which packages have left but have not been delivered
                 elif T1 <= input_time:
-
                     if input_time < T2:
-                        get_hash_table().search(str(count))[10] = 'In transit'
-                        get_hash_table().search(str(count))[9] = t1_temp
-
+                        package[10] = 'In transit'
+                        package[9] = t1_temp
                         print_status(count)  # Print package's current delivery status
 
-                    # Determine which packages have already been delivered
+                        # Determine which packages have already been delivered
                     else:
-                        get_hash_table().search(str(count))[10] = 'Delivered at ' + t2_temp
-                        get_hash_table().search(str(count))[9] = t1_temp
-
+                        package[10] = 'Delivered at ' + t2_temp
+                        package[9] = t1_temp
                         print_status(count)  # Print package's current delivery status
 
             except ValueError:
-                print('Invalid entry')
-                exit()
+                    print('Invalid entry')
+                    exit()
 
-
-        # Case Error
-        # Print Invalid Entry and quit the program
         else:
             print('Invalid entry!')
             exit()
-
 
