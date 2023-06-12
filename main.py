@@ -5,7 +5,7 @@ from route import *
 from truck import  *
 from csv_reader import *
 from package import *
-from distance import create_distance_calc
+#from distance import create_distance_calc
 import re
 
 # reusable print  functions :> O(1)
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     #distance = create_distance_calc()
     truck1, truck2, truck3 = create_trucks()
     #distance = Distance().create_distance()
-    distance = create_distance_calc()
+    #distance = create_distance_calc()
 
 import datetime
 
