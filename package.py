@@ -1,29 +1,97 @@
 import datetime
-import datetime
 from distance import *
-import csv_reader
+
 
 class Package:
-     def __init__(self, id, address, city, state, zip, deadline, weight, status, delivery_time, notes):
-         self.id = id
-         self.address = address
-         self.city = city
-         self.state = state
-         self.zip = zip
-         self.deadline = deadline
-         self.weight = weight
-         self.status = status
-         self.delivery_time = delivery_time
-         self.notes = notes
-         self.T1 = datetime.timedelta(hours=int(delivery_time.split(':')[0]), 
-                                       minutes=int(delivery_time.split(':')[1]), 
-                                       seconds=int(delivery_time.split(':')[2]))
-         self.T2 = self.T1 + datetime.timedelta(hours=int(deadline.split(':')[0]), 
-                                                 minutes=int(deadline.split(':')[1]), 
-                                                 seconds=int(deadline.split(':')[2]))
-
-     def __str__(self):
+    def __init__(self, id, address, city, state, zip, deadline, weight, status, delivery_time, notes):
+        self.id = id
+        self.address = address
+        self.city = city
+        self.state = state
+        self.zip = zip
+        self.deadline = deadline
+        self.weight = weight
+        self.status = status
+        self.delivery_time = delivery_time
+        self.notes = notes
+         
+        # self.T1 = datetime.timedelta(hours=int(delivery_time.split(':')[0]), 
+        #                                minutes=int(delivery_time.split(':')[1]), 
+        #                                seconds=int(delivery_time.split(':')[2]))
+        # self.T2 = self.T1 + datetime.timedelta(hours=int(deadline.split(':')[0]), 
+        #                                          minutes=int(deadline.split(':')[1]), 
+        #                                          seconds=int(deadline.split(':')[2]))
+        
+         # Check if delivery_time can be split into hours, minutes, and seconds
+        time_parts = delivery_time.split(':')
+        if len(time_parts) == 3 and all(part.isdigit() for part in time_parts):
+            self.T1 = datetime.timedelta(hours=int(time_parts[0]), 
+                                          minutes=int(time_parts[1]),
+                                          seconds=int(time_parts[2]))
+        elif 'EOD' in delivery_time:
+            # Handle 'EOD' case
+            self.T1 = datetime.timedelta(hours=23, minutes=59)  # This sets time to end of day
+        elif delivery_time.strip() == '':
+            # Handle case where delivery_time is empty
+            self.T1 = None
+        else:
+            # Handle other case, extract time information from string
+            # Here I assume the time is at the end of the string, like '...until 9' or '...until 9:30'
+            # Please modify the extraction according to your actual data
+            time_str = delivery_time.split(' ')[-1]
+            if ':' in time_str:  # Has minutes
+                hours, minutes = map(int, time_str.split(':'))
+                self.T1 = datetime.timedelta(hours=hours, minutes=minutes)
+            else:  # Only has hours
+                try:
+                    hours = int(time_str)
+                    self.T1 = datetime.timedelta(hours=hours)
+                except ValueError:
+                    # Handle case where time_str can't be converted to an int
+                    self.T1 = None
+                    
+                    
+    def __str__(self):
          return self.id + '|' + self.address + '|' + self.city + '|' + self.state + '|' + self.zip + '|' + self.deadline + '|' + self.weight + '|' + self.status + '|' + self.delivery_time + '|' + self.notes
+     
+    def get_package_id(self):
+            return self.id
+        
+    def get_address(self):
+        return self.address
+
+    def get_city(self):
+        return self.city
+
+    def get_state(self):
+        return self.state
+
+    def get_zip(self):
+        return self.zip
+
+    def get_deadline(self):
+        return self.deadline
+
+    def get_weight(self):
+        return self.weight
+
+    def get_delivery_status(self):
+        return self.delivery_status
+
+    def get_notes(self):
+        return self.notes
+
+    def set_delivery_status(self, status):
+        self.delivery_status = status
+
+    def set_address(self, address):
+        self.address = address
+
+    def set_city(self, set_city):
+        set_city
+
+    def set_zip(self, zip):
+        self.zip = zip
 
 
 

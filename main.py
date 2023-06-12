@@ -39,7 +39,7 @@ def print_pk_detail(count):
 
 if __name__ == '__main__':
     # create objects and load csv data
-    data = HashTable()
+    data = hashtable()
     #distance = create_distance_calc()
     truck1, truck2, truck3 = create_trucks()
     #distance = Distance().create_distance()
@@ -85,8 +85,7 @@ class Truck:
     print("------------------------------------------------------------------------------------------------------------------------")
     print("Package ID | Address | City | State | Zip | Deadline | Weight | Status | Delivery Time | Notes")
     print("------------------------------------------------------------------------------------------------------------------------")
-    for package in data.get_all_values():
-        print(package)
+
     print("------------------------------------------------------------------------------------------------------------------------")
     print("Total Packages Delivered: ", len(truck1.packages) + len(truck2.packages) + len(truck3.packages))
     print("Total Packages Not Delivered: ", truck1.total_packages_not_delivered + truck2.total_packages_not_delivered + truck3.total_packages_not_delivered)
