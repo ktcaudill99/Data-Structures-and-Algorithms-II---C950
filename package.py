@@ -202,21 +202,22 @@ for index, outer in enumerate(second_tr_pk_list):
 distance_instance.get_shortest_route(second_tr_pk_list, 2, 0)
 total_distance_tr2 = 0
 
+
 # Calculate :> O(n)
 # 1.Total distance of the Second truck
 # 2.distance of each package
-for index in range(len(distance.second_truck_indices[index])):
+for index in range(len(distance_instance.second_truck_indices)):
     try:
-        total_distance_tr2 = distance.total_distance(int(distance.second_truck_indices()[index]),
-                                                    int(distance.second_truck_indices()[index + 1]),
+        total_distance_tr2 = distance_instance.total_distance(int(distance_instance.second_truck_indices[index]),
+                                                    int(distance_instance.second_truck_indices[index + 1]),
                                                     total_distance_tr2)
 
-        deliver_package = distance.check_time(
-            distance.check_distance(int(distance.second_truck_indices()[index]),
-                                           int(distance.second_truck_indices()[
-                                                   index + 1])), second_tr_start_time)
-        distance.second_truck()[index][10] = (str(deliver_package))
-        csv_reader.get_hash_table().update(int(distance.second_truck()[index][0]), second_tr_pk_list)
+        package_distance = distance_instance.check_distance(int(distance_instance.second_truck_indices[index]),
+                                           int(distance_instance.second_truck_indices[index + 1]))
+        deliver_package = distance_instance.calculate_delivery_time(package_distance, second_tr_start_time[0])
+        
+        distance_instance.second_truck[index][10] = (str(deliver_package))
+        csv_reader.get_hash_table().update(int(distance_instance.second_truck[index][0]), second_tr_pk_list)
     except IndexError:
         pass
 
@@ -241,18 +242,18 @@ total_distance_tr3 = 0
 # Calculate :> O(n)
 # 1.Total distance of the Third truck
 # 2.distance of each package
-for index in range(len(distance.third_truck_indices[index])):
+for index in range(len(distance_instance.third_truck_indices[index])):
     try:
-        total_distance_tr3 = distance.total_distance(int(distance.third_truck_indices()[index]),
-                                                    int(distance.third_truck_indices()[index + 1]),
+        total_distance_tr3 = distance_instance.total_distance(int(distance_instance.third_truck_indices[index]),
+                                                    int(distance_instance.third_truck_indices[index + 1]),
                                                     total_distance_tr3)
 
-        deliver_package = distance.check_time(
-            distance.check_distance(int(distance.third_truck_indices()[index]),
-                                           int(distance.third_truck_indices()[index + 1])),
+        deliver_package = distance_instance.check_time(
+           distance_instance.check_distance(int(distance_instance.third_truck_indices[index]),
+                                           int(distance_instance.third_truck_indices[index + 1])),
             third_tr_start_time)
-        distance.third_truck()[index][10] = (str(deliver_package))
-        csv_reader.get_hash_table().update(int(distance.third_truck()[index][0]), third_tr_pk_list)
+        distance_instance.third_truck[index][10] = (str(deliver_package))
+        csv_reader.get_hash_table().update(int(distance_instance.third_truck[index][0]), third_tr_pk_list)
     except IndexError:
         pass
 

@@ -319,11 +319,24 @@ class distance:
         except:
             print("Error converting to Time Delta")
 
-    def check_delivery_time(self, truck, truck_time, id):
-        for i in truck:
-            if i.get_package_id() == id:
-                index = truck.index(i)
-        return truck_time[index+1]
+    # def check_delivery_time(self, truck, truck_time, id):
+    #     for i in truck:
+    #         if i.get_package_id() == id:
+    #             index = truck.index(i)
+    #     return truck_time[index+1]
+    
+    def calculate_delivery_time(self, distance, start_time):
+        time = float(distance) / 18
+        time_format = '{0:02.0f}:{1:02.0f}:00'.format(*divmod(time * 60, 60))
+        delivery_time = self.add_times(start_time, time_format)
+        return delivery_time
+
+    def add_times(self, start, duration):
+        start_datetime = datetime.datetime.strptime(start, '%H:%M:%S')
+        duration_timedelta = self.get_delta_time(duration)
+        end_datetime = start_datetime + duration_timedelta
+        return end_datetime.strftime('%H:%M:%S')
+
 
     def check_delivery_status(self, t, truck, t_time, name, id):
         delivery_time = self.check_delivery_time(truck, t_time, id)
