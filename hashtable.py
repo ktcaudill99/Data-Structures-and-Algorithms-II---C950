@@ -6,7 +6,7 @@ import os
 from package import Package
 
 
-class hashtable:
+class HashTable:
 
     # Constructor
     def __init__(self):

@@ -75,7 +75,7 @@
 import csv
 from hashtable import *
 
-hashtable = hashtable()  # Create an instance of hashtable class
+hashtable = HashTable()  # Create an instance of hashtable class
 first_delivery = []  # first truck delivery
 second_delivery = [] # second truck delivery
 final_delivery = [] # final truck delivery
@@ -144,3 +144,4 @@ def get_hash_table():
 
 if __name__=="__main__":
     print(len(get_hash_table()))
+    print((get_hash_table()))

@@ -102,16 +102,17 @@ class Package:
 
 
 
-# Create an instance of distance
-distance_calc = distance()
+    # Create an instance of distance
+    distance_calc = distance()
 
-# Empty lists created
-first_delivery = []
-second_delivery = []
-third_delivery = []
-first_truck_distance = []
-second_truck_distance = []
-third_truck_distance = []
+    # Empty lists created
+    first_delivery = []
+    second_delivery = []
+    third_delivery = []
+    first_truck_distance = []
+    second_truck_distance = []
+    third_truck_distance = []
+
 
 # # Times the trucks leave the hub
 # first_leave_times = ['8:00:00']

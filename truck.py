@@ -127,4 +127,11 @@ def create_trucks():
     truck2 = Truck(2, second_truck, second_truck_indices)
     truck3 = Truck(3, third_truck, third_truck_indices)
     
+    print(truck1)
+    print(truck2)
+    print(truck3)
+    
     return truck1, truck2, truck3
+
+if __name__=="__main__":
+    print(create_trucks())

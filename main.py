@@ -36,7 +36,11 @@ def print_pk_detail(count):
                                                    f'Special note: {get_hash_table().search(str(count))[8]}\n',
         '-' * 30, 'delivery status', '-' * 51,
     )
-
+# class Truck:
+#     def __init__(self, id, packages, indices, total_time=0, total_mileage=0):
+#         self.id = id
+    # truck2.total_packages_not_delivered = 0
+    # truck3.total_packages_not_delivered = 0
 
 
 if __name__ == '__main__':
@@ -46,20 +50,12 @@ if __name__ == '__main__':
     truck1, truck2, truck3 = create_trucks()
     #distance = Distance().create_distance()
     #distance = create_distance_calc()
-
-import datetime
-
-# Read CSV files
-with open('c950/distance_data.csv') as csvfile_1:
-    distance_csv = list(csv.reader(csvfile_1, delimiter=','))
-with open('c950/distance_name_data.csv') as csvfile_2:
-    distance_name_csv = list(csv.reader(csvfile_2, delimiter=','))
-
-class Truck:
-    def __init__(self, id, packages, indices, total_time=0, total_mileage=0):
-        self.id = id
-    # truck2.total_packages_not_delivered = 0
-    # truck3.total_packages_not_delivered = 0
+    
+    # Read CSV files
+    with open('c950/distance_data.csv') as csvfile_1:
+        distance_csv = list(csv.reader(csvfile_1, delimiter=','))
+    with open('c950/distance_name_data.csv') as csvfile_2:
+        distance_name_csv = list(csv.reader(csvfile_2, delimiter=','))
 
     # User Interface
     # Upon running the program, the below message will appear.
