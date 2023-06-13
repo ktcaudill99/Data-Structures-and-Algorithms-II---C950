@@ -82,29 +82,33 @@ final_delivery = [] # final truck delivery
 
     
 # Insert values from csv file into key/value pairs of the hash table -> O(n)
-for i in range(hashtable.total_packages):
-    package = hashtable.packages[i]
-    value = [package.get_package_id(), package.get_address_location(), package.get_address(), 
-             package.get_city(), package.get_state(), package.get_zip(), 
-             package.get_delivery_deadline(), package.get_weight(), 
-             package.get_notes(), package.get_delivery_start(), package.get_status()]
-
+# for i in range(hashtable.total_packages):
+#     package = hashtable.packages[i]
+#     value = [package.get_package_id(), package.get_address_location(), package.get_address(), 
+#              package.get_city(), package.get_state(), package.get_zip(), 
+#              package.get_deadline(), package.get_weight(), 
+#              package.get_notes(), package.get_delivery_status()]
+#package.get_delivery_start()
   # Insert values from csv file into key/value pairs of the hash table -> O(n)
-# for row in range(hashtable.total_packages):
-#     id = row[0]
-#     addr_street = row[1]
-#     addr_city = row[2]
-#     addr_state = row[3]
-#     addr_zip = row[4]
-#     delivery = row[5]
-#     size = row[6]
-#     note = row[7]
-#     delivery_start = ''
-#     addr_loc = ''
-#     delivery_status = 'At hub'
-#     value = [id, addr_loc, addr_street, addr_city, addr_state, addr_zip, delivery, size, note,
-#              delivery_start, delivery_status]
-        
+with open('c950/packages_data.csv') as csvfile:
+    read_csv = csv.reader(csvfile, delimiter=',')
+    for row in read_csv:
+        p_id = row[0]
+        p_addr_street = row[1]
+        p_addr_city = row[2]
+        p_addr_state = row[3]
+        p_addr_zip = row[4]
+        p_delivery = row[5]
+        p_size = row[6]
+        p_sp_note = row[7]
+        delivery_start = ''
+        addr_loc = ''
+        delivery_status = 'At hub'
+        value = [p_id, addr_loc, p_addr_street, p_addr_city, p_addr_state, p_addr_zip, p_delivery, p_size, p_sp_note,
+                delivery_start, delivery_status]
+
+
+
     # Correct incorrect package details
     if '84104' in value[5] and '10:30' not in value[6]:
         final_delivery.append(value)

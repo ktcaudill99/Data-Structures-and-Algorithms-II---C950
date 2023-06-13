@@ -14,6 +14,7 @@ class Package:
         self.status = status
         self.delivery_time = delivery_time
         self.notes = notes
+        self.address_location = None  
          
         # self.T1 = datetime.timedelta(hours=int(delivery_time.split(':')[0]), 
         #                                minutes=int(delivery_time.split(':')[1]), 
@@ -92,6 +93,12 @@ class Package:
 
     def set_zip(self, zip):
         self.zip = zip
+        
+    def get_address_location(self):
+        return self.address_location
+
+    def set_address_location(self, address_location):
+        self.address_location = address_location
 
 
 
