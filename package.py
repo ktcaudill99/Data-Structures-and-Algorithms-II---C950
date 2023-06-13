@@ -1,6 +1,13 @@
+total_distance_1 = 0
+total_distance_2 = 0
+total_distance_3 = 0
+
 import datetime
 import distance
 import csv_reader
+import distance
+from distance import Truck
+from distance import trucks
 
  # Empty lists created
 first_delivery = []
@@ -9,6 +16,11 @@ third_delivery = []
 first_truck_distance = []
 second_truck_distance = []
 third_truck_distance = []
+
+
+# Create three Truck instances with corresponding IDs and leave times
+trucks = [Truck(1, '8:00:00'), Truck(2, '9:10:00'), Truck(3, '11:00:00')]
+
 
 # Times the trucks leave the hub
 first_leave_times = ['8:00:00']
@@ -100,7 +112,21 @@ for index in range(len(distance.third_truck_index())):
 def total_distance():
     return total_distance_1 + total_distance_2 + total_distance_3
 
+for package in first_delivery:
+    trucks[0].add_package(package)
 
+for package in second_delivery:
+    trucks[1].add_package(package)
+
+for package in third_delivery:
+    trucks[2].add_package(package)
+    
+trucks[0].update_total_distance(total_distance_1)
+trucks[1].update_total_distance(total_distance_2)
+trucks[2].update_total_distance(total_distance_3)
+
+for truck in trucks:
+    truck.display_info()
     
 # class Package:
 #     def __init__(self, id, address, city, state, zip, deadline, weight, status, delivery_time, notes):

@@ -309,10 +309,24 @@ from package import total_distance
 import distance
 from distance import Truck
 from distance import trucks
+from package import total_distance_1, total_distance_2, total_distance_3
 
 
 class Main:
-    
+    # first_delivery = get_first_delivery()
+    # second_delivery = get_second_delivery()
+    # final_delivery = get_final_delivery()
+
+    # for truck in trucks:
+    #     if truck.truck_id == 1:
+    #         truck.load_truck(first_delivery)
+    #     elif truck.truck_id == 2:
+    #         truck.load_truck(second_delivery)
+    #     elif truck.truck_id == 3:
+    #         truck.load_truck(final_delivery)
+
+    # for truck in trucks:
+    #     truck.display_info()
 #     # This is the display message that is shown when the user runs the program. The interface is accessible from here
 #     print('------------------------------')
 #     print('WGUPS Routing Program!')
@@ -324,7 +338,6 @@ class Main:
     cur_date = now.strftime("%Y-%m-%d\n")
     print("#Today is: ", cur_date)
     print("#Current time: ", cur_time)
-
     # for package in data.get_all_values():
     #     print(package)
 

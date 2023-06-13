@@ -1,7 +1,8 @@
 
-    
+from package import total_distance_1, total_distance_2, total_distance_3
 import csv
 import datetime
+from importlib.resources import Package
 
 # Read CSV files
 with open('./c950/distance_data.csv') as csvfile_1:
@@ -110,6 +111,7 @@ with open('./c950/distance_name_data.csv') as csvfile_2:
 
     def third_truck_list():
         return third_truck
+
 class Truck:
     def __init__(self, truck_id, leave_time):
         self.truck_id = truck_id
@@ -117,6 +119,25 @@ class Truck:
         self.total_distance = 0
         self.total_time = leave_time
         self.total_mileage = 0
+        self.current_weight = 0
+        self.weight_limit = 100  # weight limit for each truck
+        
+        
+        def load_truck(self):
+             # sort packages based on weight in ascending order
+            package.sort(key=lambda x: x['weight'])
+
+            for package in package:
+                if self.current_weight + package['weight'] <= self.weight_limit:
+                    self.packages.append(package)
+                    self.current_weight += package['weight']
+                else:
+                    # Break the loop if the truck has reached its weight limit
+                    break
+
+            # remove the packages that have been loaded onto the truck
+            for package in self.package:
+                package.remove(package)
 
     def add_package(self, package):
         self.packages.append(package)
@@ -124,6 +145,10 @@ class Truck:
         self.total_time += package.time  # assuming package has a time attribute
         self.total_mileage += package.mileage  # assuming package has a mileage attribute
 
+    
+    def update_total_distance(self, distance):
+        self.total_distance += distance
+    
     def update_package_status(self, distance, delivery_time):
         # assuming the distance class has these methods and they do what's expected
         self.total_distance += distance
@@ -138,15 +163,28 @@ class Truck:
         print(f"Total Time: {self.total_time}")
         print(f"Total Mileage: {self.total_mileage}")
         print("--------------------------------------------------")
+    def display_total_distance(self):
+            print(f"Total distance for truck {self.truck_id}: {self.total_distance}")
 
 # Create a list of trucks
 trucks = [
     Truck(1, '8:00:00'),
     Truck(2, '9:10:00'),
-    Truck(3, third_truck_indices)
+    Truck(3, '11:00:00')
 ]
 
+for truck in trucks:
+  #  truck.display_info()
+    truck.display_total_distance()
+# # Create a list of trucks
+# trucks = [
+#     Truck(1, '8:00:00'),
+#     Truck(2, '9:10:00'),
+#     Truck(3, third_truck_indices)
+# ]
 
+# for truck in trucks:
+#     truck.display_info()
 
 ###########################################################################
 
