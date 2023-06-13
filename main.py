@@ -8,6 +8,8 @@ from package import *
 #from distance import create_distance_calc
 import re
 
+#data = hashtable()
+
 # reusable print  functions :> O(1)
 def print_status(count):
     print(
@@ -39,7 +41,7 @@ def print_pk_detail(count):
 
 if __name__ == '__main__':
     # create objects and load csv data
-    data = hashtable()
+    
     #distance = create_distance_calc()
     truck1, truck2, truck3 = create_trucks()
     #distance = Distance().create_distance()
@@ -77,8 +79,8 @@ class Truck:
     print(""" #Today is          :""", cur_date, """#Current time      :""", cur_time)
 
 
-    for package in data.get_all_values():
-        print(package)
+   # for package in data.get_all_values():
+   #     print(package)
 
     # display package data
     print("WGUPS Package Data")
@@ -89,7 +91,7 @@ class Truck:
     print("------------------------------------------------------------------------------------------------------------------------")
     print("Total Packages Delivered: ", len(truck1.packages) + len(truck2.packages) + len(truck3.packages))
     print("Total Packages Not Delivered: ", truck1.total_packages_not_delivered + truck2.total_packages_not_delivered + truck3.total_packages_not_delivered)
-    print("Total Packages: ", len(data.packages))
+   # print("Total Packages: ", len(data.packages))
     print("Total Distance: ",)# total_distance)
     print("Total Time: ", truck1.total_time + truck2.total_time + truck3.total_time)
     print("Total Mileage: ", truck1.total_mileage + truck2.total_mileage + truck3.total_mileage)
