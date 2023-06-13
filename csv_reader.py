@@ -143,4 +143,4 @@ def get_hash_table():
     return hashtable.packages
 
 if __name__=="__main__":
-    print(get_hash_table())
+    print(len(get_hash_table()))
