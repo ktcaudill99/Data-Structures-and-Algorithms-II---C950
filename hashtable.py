@@ -1,9 +1,7 @@
 # # HashTable class using chaining.
-
 import csv
 import os
-from package import package
-
+from package import Package
 
 class HashTable:
     # Constructor
@@ -24,14 +22,19 @@ class HashTable:
     def add(self, key, package):
         self.packages[key] = package
 
+    # # delete package from packages hash map
+    # def delete(self, id):
+    #     key = self.get_hash(id)
+    #     self.packages.remove(key)
     # delete package from packages hash map
     def delete(self, id):
         key = self.get_hash(id)
-        self.packages.remove(key)
+        if id in self.packages[key]:
+            del self.packages[key][id]
 
     # insert package into hash map
     def insert(self, id, address, city, state, zip, deadline, weight, status):
-        delivery = package(id, address, city, state, zip, deadline, weight, status, '')
+        delivery = Package(id, address, city, state, zip, deadline, weight, status, '')
         key = self.get_hash(id)
         self.packages[key] = delivery
 
@@ -40,13 +43,61 @@ class HashTable:
         key = self.get_hash(id)
         return self.packages[key]
 
+    # Search functions by different fields
+    def lookup_by_id(self, id):
+        for package in self.packages:
+            if package.get_package_id() == id:
+                return package
+
+    def lookup_by_address(self, address):
+        result = []
+        for package in self.packages:
+            if package.get_address() == address:
+                result.append(package)
+        return result
+
+    def lookup_by_city(self, city):
+        result = []
+        for package in self.packages:
+            if package.get_city().lower() == city.lower():
+                result.append(package)
+        return result
+
+    def lookup_by_zip(self, zip):
+        result = []
+        for package in self.packages:
+            if package.get_zip() == zip:
+                result.append(package)
+        return result
+
+    def lookup_by_weight(self, weight):
+        result = []
+        for package in self.packages:
+            if package.get_weight() == weight:
+                result.append(package)
+        return result
+
+    def lookup_by_deadline(self, deadline):
+        result = []
+        for package in self.packages:
+            if package.get_deadline() == deadline:
+                result.append(package)
+        return result
+
+    def lookup_by_status(self, status):
+        result = []
+        for package in self.packages:
+            if package.get_delivery_status().lower() == status.lower():
+                result.append(package)
+        return result
+
     # read package data from csv to hash map
     def parse_csv(self, path, file_name):
         with open(path + file_name) as file:
             reader = csv.reader(file, delimiter=',')
             next(reader, None)  # skip headers
             for row in reader:
-                delivery = package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], "AT_HUB", row[7])
+                delivery = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], "AT_HUB", row[7])
                 key = self.get_hash(delivery.get_package_id())
                 self.add(key, delivery)
 
@@ -56,7 +107,64 @@ class HashTable:
             reader = csv.reader(file, delimiter=',')
             next(reader, None)  # skip headers
             return len(list(reader))
-        
+
+# import csv
+# import os
+# from package import package
+
+
+# class HashTable:
+#     # Constructor
+#     def __init__(self):
+#         path = os.getcwd()
+#         file_name = "/Package_File.csv"
+#         self.total_packages = self.get_csv_len(path, file_name)
+#         self.packages = []
+#         for i in range(self.total_packages):
+#             self.packages.append([])
+#         self.parse_csv(path, file_name)
+
+#     # get the hash key
+#     def get_hash(self, key):
+#         return key % self.total_packages
+
+#     # add package to packages hash map
+#     def add(self, key, package):
+#         self.packages[key] = package
+
+#     # delete package from packages hash map
+#     def delete(self, id):
+#         key = self.get_hash(id)
+#         self.packages.remove(key)
+
+#     # insert package into hash map
+#     def insert(self, id, address, city, state, zip, deadline, weight, status):
+#         delivery = package(id, address, city, state, zip, deadline, weight, status, '')
+#         key = self.get_hash(id)
+#         self.packages[key] = delivery
+
+#     # lookup package from hash map
+#     def lookup(self, id):
+#         key = self.get_hash(id)
+#         return self.packages[key]
+
+#     # read package data from csv to hash map
+#     def parse_csv(self, path, file_name):
+#         with open(path + file_name) as file:
+#             reader = csv.reader(file, delimiter=',')
+#             next(reader, None)  # skip headers
+#             for row in reader:
+#                 delivery = package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], "AT_HUB", row[7])
+#                 key = self.get_hash(delivery.get_package_id())
+#                 self.add(key, delivery)
+
+#     # grab length for hash map size
+#     def get_csv_len(self, path, file_name):
+#         with open(path + file_name) as file:
+#             reader = csv.reader(file, delimiter=',')
+#             next(reader, None)  # skip headers
+#             return len(list(reader))
+        ##########################################################################3
 #def get_csv_len(self, path, file_name):
 #         with open(path + "/" + file_name) as file:
 #             reader = csv.reader(file, delimiter=',')
