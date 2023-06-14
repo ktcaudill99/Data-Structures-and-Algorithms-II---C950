@@ -309,264 +309,264 @@
 # import distance
 # from distance import Truck
 # from distance import trucks
-from hashtable import HashTable
-from distance import Distance
-from route import Route
-from truck import Truck
-import re
-import datetime
+# from hashtable import HashTable
+# from distance import Distance
+# from route import Route
+# from truck import Truck
+# import re
+# import datetime
 
-class Main:
-    # first_delivery = get_first_delivery()
-    # second_delivery = get_second_delivery()
-    # final_delivery = get_final_delivery()
+# class Main:
+#     # first_delivery = get_first_delivery()
+#     # second_delivery = get_second_delivery()
+#     # final_delivery = get_final_delivery()
 
-    # for truck in trucks:
-    #     if truck.truck_id == 1:
-    #         truck.load_truck(first_delivery)
-    #     elif truck.truck_id == 2:
-    #         truck.load_truck(second_delivery)
-    #     elif truck.truck_id == 3:
-    #         truck.load_truck(final_delivery)
+#     # for truck in trucks:
+#     #     if truck.truck_id == 1:
+#     #         truck.load_truck(first_delivery)
+#     #     elif truck.truck_id == 2:
+#     #         truck.load_truck(second_delivery)
+#     #     elif truck.truck_id == 3:
+#     #         truck.load_truck(final_delivery)
 
-    # for truck in trucks:
-    #     truck.display_info()
-#     # This is the display message that is shown when the user runs the program. The interface is accessible from here
-#     print('------------------------------')
-#     print('WGUPS Routing Program!')
-#     print('------------------------------\n')
-#     print(f'Route was completed in {total_distance():.2f} miles.\n')
-    # display today's date and time
-    now = datetime.datetime.now()
-    cur_time = now.strftime("%H:%M:%S\n")
-    cur_date = now.strftime("%Y-%m-%d\n")
-    print("#Today is: ", cur_date)
-    print("#Current time: ", cur_time)
-    data = HashTable()
-    distance = Distance()
-    route = Route(distance)
-    ts = Truck()
-    ts.sort_packages_into_priorities(data.packages)
-    # optimize truck routes
-    optimized_truck_1 = route.optimize_route(ts.truck1)
-    optimized_truck_2 = route.optimize_route(ts.truck2)
-    optimized_truck_3 = route.optimize_route(ts.truck3)
-    truck_timeline_1 = distance.check_time(optimized_truck_1, 'truck1')
-    truck_timeline_2 = distance.check_time(optimized_truck_2, 'truck2')
-    truck_timeline_3 = distance.check_time(optimized_truck_3, 'truck3')
-    # calc distance
-    td1 = distance.get_total_distance_traveled(optimized_truck_1)
-    td2 = distance.get_total_distance_traveled(optimized_truck_2)
-    td3 = distance.get_total_distance_traveled(optimized_truck_3)
-    total_distance = td1 + td2 + td3
-    # for package in data.get_all_values():
-    #     print(package)
+#     # for truck in trucks:
+#     #     truck.display_info()
+# #     # This is the display message that is shown when the user runs the program. The interface is accessible from here
+# #     print('------------------------------')
+# #     print('WGUPS Routing Program!')
+# #     print('------------------------------\n')
+# #     print(f'Route was completed in {total_distance():.2f} miles.\n')
+#     # display today's date and time
+#     now = datetime.datetime.now()
+#     cur_time = now.strftime("%H:%M:%S\n")
+#     cur_date = now.strftime("%Y-%m-%d\n")
+#     print("#Today is: ", cur_date)
+#     print("#Current time: ", cur_time)
+#     data = HashTable()
+#     distance = Distance()
+#     route = Route(distance)
+#     ts = Truck()
+#     ts.sort_packages_into_priorities(data.packages)
+#     # optimize truck routes
+#     optimized_truck_1 = route.optimize_route(ts.truck1)
+#     optimized_truck_2 = route.optimize_route(ts.truck2)
+#     optimized_truck_3 = route.optimize_route(ts.truck3)
+#     truck_timeline_1 = distance.check_time(optimized_truck_1, 'truck1')
+#     truck_timeline_2 = distance.check_time(optimized_truck_2, 'truck2')
+#     truck_timeline_3 = distance.check_time(optimized_truck_3, 'truck3')
+#     # calc distance
+#     td1 = distance.get_total_distance_traveled(optimized_truck_1)
+#     td2 = distance.get_total_distance_traveled(optimized_truck_2)
+#     td3 = distance.get_total_distance_traveled(optimized_truck_3)
+#     total_distance = td1 + td2 + td3
+#     # for package in data.get_all_values():
+#     #     print(package)
 
-    # display package data
-    print("WGUPS Current Package Data")
-    # print("------------------------------------------------------------------------------------------------------------------------")
-    # print("Package ID | Address | City | State | Zip | Deadline | Weight | Status | Delivery Time | Notes")
-    # print("------------------------------------------------------------------------------------------------------------------------")
+#     # display package data
+#     print("WGUPS Current Package Data")
+#     # print("------------------------------------------------------------------------------------------------------------------------")
+#     # print("Package ID | Address | City | State | Zip | Deadline | Weight | Status | Delivery Time | Notes")
+#     # print("------------------------------------------------------------------------------------------------------------------------")
 
-    # for package in distance.first_truck_list() + distance.second_truck_list() + distance.third_truck_list():
-    #     print(" | ".join(str(x) for x in package))
-  #  total_packages_delivered = len(distance.first_truck_list()) + len(distance.second_truck_list()) + len(distance.third_truck_list())
-  #  total_packages_not_delivered = len(get_first_delivery()) + len(get_second_delivery()) + len(get_final_delivery()) - total_packages_delivered
-    # print("Total packages delivered: ", total_packages_delivered)
-    # print("Total packages not delivered: ", total_packages_not_delivered)
+#     # for package in distance.first_truck_list() + distance.second_truck_list() + distance.third_truck_list():
+#     #     print(" | ".join(str(x) for x in package))
+#   #  total_packages_delivered = len(distance.first_truck_list()) + len(distance.second_truck_list()) + len(distance.third_truck_list())
+#   #  total_packages_not_delivered = len(get_first_delivery()) + len(get_second_delivery()) + len(get_final_delivery()) - total_packages_delivered
+#     # print("Total packages delivered: ", total_packages_delivered)
+#     # print("Total packages not delivered: ", total_packages_not_delivered)
 
-    print("------------------------------------------------------------------------------------------------------------------------")
-#    print("Total Packages Delivered: ", total_packages_delivered)
-#    print("Total Packages Not Delivered: ", total_packages_not_delivered)
-    # print("Total Packages: ", len(data.packages))
-    print("Truck 1 Distance: ", td1)
-    print("Truck 2 Distance: ", td2)
-    print("Truck 3 Distance: ", td3)
-    print("Total Distance:   ", total_distance)
-    print("------------------------------------------------------------------------------------------------------------------------")
-    print("WGUPS Truck Data")
-    print("------------------------------------------------------------------------------------------------------------------------")
-    print("Truck ID | Total Packages | Total Distance | Total Time | Total Mileage")
-    print("------------------------------------------------------------------------------------------------------------------------")
+#     print("------------------------------------------------------------------------------------------------------------------------")
+# #    print("Total Packages Delivered: ", total_packages_delivered)
+# #    print("Total Packages Not Delivered: ", total_packages_not_delivered)
+#     # print("Total Packages: ", len(data.packages))
+#     print("Truck 1 Distance: ", td1)
+#     print("Truck 2 Distance: ", td2)
+#     print("Truck 3 Distance: ", td3)
+#     print("Total Distance:   ", total_distance)
+#     print("------------------------------------------------------------------------------------------------------------------------")
+#     print("WGUPS Truck Data")
+#     print("------------------------------------------------------------------------------------------------------------------------")
+#     print("Truck ID | Total Packages | Total Distance | Total Time | Total Mileage")
+#     print("------------------------------------------------------------------------------------------------------------------------")
 
-    # for truck in trucks:
-    #     truck.display_info()
+#     # for truck in trucks:
+#     #     truck.display_info()
  
 
-    while True:
-        user_input = input("""
-    Please select an option below to begin or type 'quit' to quit:
-        1. Get info for all packages at a particular time
-        2. Get all packages current status
-        3. Get info for a single package at a particular time
-    """)
-#if user input is quit or q, exit the program
-        if user_input == 'quit':
-            print('Thank you for using WGUPS!')
-            break
-        elif user_input == 'q':
-            print('Thank you for using WGUPS!')
-            break
-        # Case if user selects Option #1
-        # Get info for all packages at a particular time -> O(n)
-        elif user_input == '1':
-            try:
-                input_time = input('Enter a time (HH:MM): ')
-                hrs, mins = input_time.split(':')
-                secs = 0  # default seconds to 0
-                convert_user_time = datetime.timedelta(hours=int(hrs), minutes=int(mins), seconds=int(secs))
+#     while True:
+#         user_input = input("""
+#     Please select an option below to begin or type 'quit' to quit:
+#         1. Get info for all packages at a particular time
+#         2. Get all packages current status
+#         3. Get info for a single package at a particular time
+#     """)
+# #if user input is quit or q, exit the program
+#         if user_input == 'quit':
+#             print('Thank you for using WGUPS!')
+#             break
+#         elif user_input == 'q':
+#             print('Thank you for using WGUPS!')
+#             break
+#         # Case if user selects Option #1
+#         # Get info for all packages at a particular time -> O(n)
+#         elif user_input == '1':
+#             try:
+#                 input_time = input('Enter a time (HH:MM): ')
+#                 hrs, mins = input_time.split(':')
+#                 secs = 0  # default seconds to 0
+#                 convert_user_time = datetime.timedelta(hours=int(hrs), minutes=int(mins), seconds=int(secs))
 
 
-                # Complexity ->  O(n^2)
-                for count in range(1,41):
-                    try:
-                        # first_time = get_hash_table().get_value(str(count))[9]
-                        # second_time = get_hash_table().get_value(str(count))[10]
-                        (hrs, mins, secs) = first_time.split(':')
-                        convert_first_time = datetime.timedelta(hours=int(hrs), minutes=int(mins), seconds=int(secs))
-                        (hrs, mins, secs) = second_time.split(':')
-                        convert_second_time = datetime.timedelta(hours=int(hrs), minutes=int(mins), seconds=int(secs))
-                    except ValueError:
-                        pass
+#                 # Complexity ->  O(n^2)
+#                 for count in range(1,41):
+#                     try:
+#                         # first_time = get_hash_table().get_value(str(count))[9]
+#                         # second_time = get_hash_table().get_value(str(count))[10]
+#                         (hrs, mins, secs) = first_time.split(':')
+#                         convert_first_time = datetime.timedelta(hours=int(hrs), minutes=int(mins), seconds=int(secs))
+#                         (hrs, mins, secs) = second_time.split(':')
+#                         convert_second_time = datetime.timedelta(hours=int(hrs), minutes=int(mins), seconds=int(secs))
+#                     except ValueError:
+#                         pass
                     
-                    # Determine which packages have left the hub
-                    if convert_first_time >= convert_user_time:
-                        # get_hash_table().get_value(str(count))[10] = 'At Hub'
-                        # get_hash_table().get_value(str(count))[9] = 'Leaves at ' + first_time
+#                     # Determine which packages have left the hub
+#                     if convert_first_time >= convert_user_time:
+#                         # get_hash_table().get_value(str(count))[10] = 'At Hub'
+#                         # get_hash_table().get_value(str(count))[9] = 'Leaves at ' + first_time
 
-                        # Print package's current info
-                        print(
-                            # f'Package ID: {get_hash_table().get_value(str(count))[0]}, '
-                            # f'Delivery status: {get_hash_table().get_value(str(count))[10]}'
-                        )
+#                         # Print package's current info
+#                         print(
+#                             # f'Package ID: {get_hash_table().get_value(str(count))[0]}, '
+#                             # f'Delivery status: {get_hash_table().get_value(str(count))[10]}'
+#                         )
 
-                    # Determine which packages have left but have not been delivered
-                    elif convert_first_time <= convert_user_time:
-                        if convert_user_time < convert_second_time:
-                            # get_hash_table().get_value(str(count))[10] = 'In transit'
-                            # get_hash_table().get_value(str(count))[9] = 'Left at ' + first_time
+#                     # Determine which packages have left but have not been delivered
+#                     elif convert_first_time <= convert_user_time:
+#                         if convert_user_time < convert_second_time:
+#                             # get_hash_table().get_value(str(count))[10] = 'In transit'
+#                             # get_hash_table().get_value(str(count))[9] = 'Left at ' + first_time
 
-                            # Print package's current info
-                            print(
-                                # f'Package ID: {get_hash_table().get_value(str(count))[0]}, '
-                                # f'Delivery status: {get_hash_table().get_value(str(count))[10]}'
-                            )
+#                             # Print package's current info
+#                             print(
+#                                 # f'Package ID: {get_hash_table().get_value(str(count))[0]}, '
+#                                 # f'Delivery status: {get_hash_table().get_value(str(count))[10]}'
+#                             )
 
-                        # Determine which packages have already been delivered
-                        else:
-                            # get_hash_table().get_value(str(count))[10] = 'Delivered at ' + second_time
-                            # get_hash_table().get_value(str(count))[9] = 'Left at ' + first_time
+#                         # Determine which packages have already been delivered
+#                         else:
+#                             # get_hash_table().get_value(str(count))[10] = 'Delivered at ' + second_time
+#                             # get_hash_table().get_value(str(count))[9] = 'Left at ' + first_time
 
-                            # Print package's current info
-                            print(
-                                # f'Package ID: {get_hash_table().get_value(str(count))[0]}, '
-                                # f'Delivery status: {get_hash_table().get_value(str(count))[10]}'
-                            )
-            except IndexError:
-                print(IndexError)
-                exit()
-            except ValueError:
-                print('Invalid entry!')
-                exit()
+#                             # Print package's current info
+#                             print(
+#                                 # f'Package ID: {get_hash_table().get_value(str(count))[0]}, '
+#                                 # f'Delivery status: {get_hash_table().get_value(str(count))[10]}'
+#                             )
+#             except IndexError:
+#                 print(IndexError)
+#                 exit()
+#             except ValueError:
+#                 print('Invalid entry!')
+#                 exit()
                 
-        elif user_input == '2':
-            print("WGUPS Current Package Data")
-            print("------------------------------------------------------------------------------------------------------------------------")
-            print("Package ID | Address | City | State | Zip | Deadline | Weight | Status | Delivery Time | Notes")
-            print("------------------------------------------------------------------------------------------------------------------------")
+#         elif user_input == '2':
+#             print("WGUPS Current Package Data")
+#             print("------------------------------------------------------------------------------------------------------------------------")
+#             print("Package ID | Address | City | State | Zip | Deadline | Weight | Status | Delivery Time | Notes")
+#             print("------------------------------------------------------------------------------------------------------------------------")
 
-    #         for package in distance.first_truck_list() + distance.second_truck_list() + distance.third_truck_list():
-    #             print(" | ".join(str(x) for x in package))
-    #         total_packages_delivered = len(distance.first_truck_list()) + len(distance.second_truck_list()) + len(distance.third_truck_list())
-    #         # total_packages_not_delivered = len(get_first_delivery()) + len(get_second_delivery()) + len(get_final_delivery()) - total_packages_delivered
-    #         print("Total packages delivered: ", total_packages_delivered)
-    #   #      print("Total packages not delivered: ", total_packages_not_delivered)
+#     #         for package in distance.first_truck_list() + distance.second_truck_list() + distance.third_truck_list():
+#     #             print(" | ".join(str(x) for x in package))
+#     #         total_packages_delivered = len(distance.first_truck_list()) + len(distance.second_truck_list()) + len(distance.third_truck_list())
+#     #         # total_packages_not_delivered = len(get_first_delivery()) + len(get_second_delivery()) + len(get_final_delivery()) - total_packages_delivered
+#     #         print("Total packages delivered: ", total_packages_delivered)
+#     #   #      print("Total packages not delivered: ", total_packages_not_delivered)
             
             
-            distance.display_data_from_time("TRUCK 1", optimized_truck_1, truck_timeline_1, "", td1)
-            distance.display_data_from_time("TRUCK 2", optimized_truck_2, truck_timeline_2, "", td2)
-            distance.display_data_from_time("TRUCK 3", optimized_truck_3, truck_timeline_3, "", td3)
-            print('Total Distance = {} Miles\n'.format(total_distance))
+#             distance.display_data_from_time("TRUCK 1", optimized_truck_1, truck_timeline_1, "", td1)
+#             distance.display_data_from_time("TRUCK 2", optimized_truck_2, truck_timeline_2, "", td2)
+#             distance.display_data_from_time("TRUCK 3", optimized_truck_3, truck_timeline_3, "", td3)
+#             print('Total Distance = {} Miles\n'.format(total_distance))
     
-        # Case if user selects Option #2
-        # Get info for a single package at a particular time -> O(n)
-        elif user_input == '3':
-            try:
-                count = input('Enter a valid package ID: ')
-                # first_time = get_hash_table().get_value(str(count))[9]
-                # second_time = get_hash_table().get_value(str(count))[10]
-                input_time = input('Enter a time (HH:MM): ')
-                hrs, mins = input_time.split(':')
-                secs = 0  # default seconds to 0
-                convert_user_time = datetime.timedelta(hours=int(hrs), minutes=int(mins), seconds=int(secs))
-                # hrs, mins, secs = first_time.split(':')
-                # convert_first_time = datetime.timedelta(hours=int(hrs), minutes=int(mins), seconds=int(secs))
-                # hrs, mins, secs = second_time.split(':')
-                # convert_second_time = datetime.timedelta(hours=int(hrs), minutes=int(mins), seconds=int(secs))
+#         # Case if user selects Option #2
+#         # Get info for a single package at a particular time -> O(n)
+#         elif user_input == '3':
+#             try:
+#                 count = input('Enter a valid package ID: ')
+#                 # first_time = get_hash_table().get_value(str(count))[9]
+#                 # second_time = get_hash_table().get_value(str(count))[10]
+#                 input_time = input('Enter a time (HH:MM): ')
+#                 hrs, mins = input_time.split(':')
+#                 secs = 0  # default seconds to 0
+#                 convert_user_time = datetime.timedelta(hours=int(hrs), minutes=int(mins), seconds=int(secs))
+#                 # hrs, mins, secs = first_time.split(':')
+#                 # convert_first_time = datetime.timedelta(hours=int(hrs), minutes=int(mins), seconds=int(secs))
+#                 # hrs, mins, secs = second_time.split(':')
+#                 # convert_second_time = datetime.timedelta(hours=int(hrs), minutes=int(mins), seconds=int(secs))
 
 
 
-                # Determine which packages have left the hub
-                if convert_first_time >= convert_user_time:
+#                 # Determine which packages have left the hub
+#                 if convert_first_time >= convert_user_time:
 
-                    # get_hash_table().get_value(str(count))[10] = 'At Hub'
-                    # get_hash_table().get_value(str(count))[9] = 'Leaves at ' + first_time
+#                     # get_hash_table().get_value(str(count))[10] = 'At Hub'
+#                     # get_hash_table().get_value(str(count))[9] = 'Leaves at ' + first_time
                     
-                    # # Print package's current info
-                    print(
-                        # f'Package ID: {get_hash_table().get_value(str(count))[0]}\n'
-                        # f'Street address: {get_hash_table().get_value(str(count))[2]}\n'
-                        # f'Required delivery time: {get_hash_table().get_value(str(count))[6]}\n'
-                        # f'Package weight: {get_hash_table().get_value(str(count))[7]}\n'
-                        # f'Truck status: {get_hash_table().get_value(str(count))[9]}\n'
-                        # f'Delivery status: {get_hash_table().get_value(str(count))[10]}\n'
-                    )
+#                     # # Print package's current info
+#                     print(
+#                         # f'Package ID: {get_hash_table().get_value(str(count))[0]}\n'
+#                         # f'Street address: {get_hash_table().get_value(str(count))[2]}\n'
+#                         # f'Required delivery time: {get_hash_table().get_value(str(count))[6]}\n'
+#                         # f'Package weight: {get_hash_table().get_value(str(count))[7]}\n'
+#                         # f'Truck status: {get_hash_table().get_value(str(count))[9]}\n'
+#                         # f'Delivery status: {get_hash_table().get_value(str(count))[10]}\n'
+#                     )
 
-                # Determine which packages have left but have not been delivered
-                elif convert_first_time <= convert_user_time:
-                    if convert_user_time < convert_second_time:
-                        # get_hash_table().get_value(str(count))[10] = 'In transit'
-                        # get_hash_table().get_value(str(count))[9] = 'Left at ' + first_time
+#                 # Determine which packages have left but have not been delivered
+#                 elif convert_first_time <= convert_user_time:
+#                     if convert_user_time < convert_second_time:
+#                         # get_hash_table().get_value(str(count))[10] = 'In transit'
+#                         # get_hash_table().get_value(str(count))[9] = 'Left at ' + first_time
 
-                        # Print package's current info
-                        print(
-                        #     f'Package ID: {get_hash_table().get_value(str(count))[0]}\n'
-                        #     f'Street address: {get_hash_table().get_value(str(count))[2]}\n'
-                        #     f'Required delivery time: {get_hash_table().get_value(str(count))[6]}\n'
-                        #     f'Package weight: {get_hash_table().get_value(str(count))[7]}\n'
-                        #     f'Truck status: {get_hash_table().get_value(str(count))[9]}\n'
-                        #     f'Delivery status: {get_hash_table().get_value(str(count))[10]}\n'
-                        )
+#                         # Print package's current info
+#                         print(
+#                         #     f'Package ID: {get_hash_table().get_value(str(count))[0]}\n'
+#                         #     f'Street address: {get_hash_table().get_value(str(count))[2]}\n'
+#                         #     f'Required delivery time: {get_hash_table().get_value(str(count))[6]}\n'
+#                         #     f'Package weight: {get_hash_table().get_value(str(count))[7]}\n'
+#                         #     f'Truck status: {get_hash_table().get_value(str(count))[9]}\n'
+#                         #     f'Delivery status: {get_hash_table().get_value(str(count))[10]}\n'
+#                         )
 
-                    # Determine which packages have already been delivered
-                    else:
-                        # get_hash_table().get_value(str(count))[10] = 'Delivered at ' + second_time
-                        # get_hash_table().get_value(str(count))[9] = 'Left at ' + first_time
+#                     # Determine which packages have already been delivered
+#                     else:
+#                         # get_hash_table().get_value(str(count))[10] = 'Delivered at ' + second_time
+#                         # get_hash_table().get_value(str(count))[9] = 'Left at ' + first_time
 
-                        # Print package's current info
-                        print(
-                            # f'Package ID: {get_hash_table().get_value(str(count))[0]}\n'
-                            # f'Street address: {get_hash_table().get_value(str(count))[2]}\n'
-                            # f'Required delivery time: {get_hash_table().get_value(str(count))[6]}\n'
-                            # f'Package weight: {get_hash_table().get_value(str(count))[7]}\n'
-                            # f'Truck status: {get_hash_table().get_value(str(count))[9]}\n'
-                            # f'Delivery status: {get_hash_table().get_value(str(count))[10]}\n'
-                        )
+#                         # Print package's current info
+#                         print(
+#                             # f'Package ID: {get_hash_table().get_value(str(count))[0]}\n'
+#                             # f'Street address: {get_hash_table().get_value(str(count))[2]}\n'
+#                             # f'Required delivery time: {get_hash_table().get_value(str(count))[6]}\n'
+#                             # f'Package weight: {get_hash_table().get_value(str(count))[7]}\n'
+#                             # f'Truck status: {get_hash_table().get_value(str(count))[9]}\n'
+#                             # f'Delivery status: {get_hash_table().get_value(str(count))[10]}\n'
+#                         )
 
-            except ValueError:
-                print('Invalid entry')
-                exit()
+#             except ValueError:
+#                 print('Invalid entry')
+#                 exit()
 
-        # # Case 'exit'
-        # # This exits the program
-        # elif user_input == 'quit':
-        #     exit()
+#         # # Case 'exit'
+#         # # This exits the program
+#         # elif user_input == 'quit':
+#         #     exit()
 
-        # Case Error
-        # Print Invalid Entry and quit the program
-        else:
-            print('print("Invalid input, please select an option from the menu or type quit to quit.")')
-            ############################################################################################
+#         # Case Error
+#         # Print Invalid Entry and quit the program
+#         else:
+#             print('print("Invalid input, please select an option from the menu or type quit to quit.")')
+#             ############################################################################################
 
 #             from HashData import HashData
 # from Distance import Distance
@@ -598,6 +598,233 @@ class Main:
 #     while(True):
 #         print("Please Enter a command\n'Report'\n'Lookup'\n'Timestamp\n'Exit'\n")
 #         print(total_distance)
+#         start = input().lower()
+#         print(start)
+#         if start == 'exit':
+#             exit(0)
+#         elif start == 'report':
+#             # display
+#             distance.display_data_from_time("TRUCK 1", optimized_truck_1, truck_timeline_1, "", td1)
+#             distance.display_data_from_time("TRUCK 2", optimized_truck_2, truck_timeline_2, "", td2)
+#             distance.display_data_from_time("TRUCK 3", optimized_truck_3, truck_timeline_3, "", td3)
+#             print('Total Distance = {} Miles\n'.format(total_distance))
+#         elif start == 'lookup':
+#             print('Please enter a package ID: \n')
+#             ans = int(input())
+#             search = ''
+#             truck = []
+#             truck_time = []
+#             for t in optimized_truck_1:
+#                 if t.get_package_id() == ans:
+#                     p = t
+#                     search = ans
+#                     truck = optimized_truck_1
+#                     truck_time = truck_timeline_1
+#             for t in optimized_truck_2:
+#                 if t.get_package_id() == ans:
+#                     p = t
+#                     search = ans
+#                     truck = optimized_truck_2
+#                     truck_time = truck_timeline_2
+#             for t in optimized_truck_3:
+#                 if t.get_package_id() == ans:
+#                     p = t
+#                     search = ans
+#                     truck = optimized_truck_3
+#                     truck_time = truck_timeline_3
+#             if search != '':
+#                 ed = distance.check_delivery_time(truck, truck_time, int(search))
+#                 print('ID: {} - Address: {} {}, {} - Deadline: {} - Weight: {} - Status: {} - Expected Delivery: {}\n'.format(p.get_package_id(), p.get_address(), p.get_city(), p.get_zip(), p.get_deadline(), p.get_weight(), p.get_delivery_status(), ed))
+#             else:
+#                 print("Sorry we didnt find a package with that ID number.\n")
+#         elif start == 'timestamp':
+#             print('Please Enter a timestamp in the format of HH:MM:SS\n')
+#             pattern = re.compile("^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$")
+#             ans = input()
+#             if pattern.search(ans):
+#                 distance.display_data_from_time("TRUCK 1", optimized_truck_1, truck_timeline_1, ans, td1)
+#                 distance.display_data_from_time("TRUCK 2", optimized_truck_2, truck_timeline_2, ans, td2)
+#                 distance.display_data_from_time("TRUCK 3", optimized_truck_3, truck_timeline_3, ans, td3)
+#             else:
+#                 print('Please enter timestamp info correctly matching the correct pattern')
+#         else:
+#             print('Please enter a valid command.\n')
+#             pass
+from hashtable import HashTable
+from distance import Distance
+from route import Route
+from truck import Truck
+import re
+import datetime
+
+class Main:
+    now = datetime.datetime.now()
+    cur_time = now.strftime("%H:%M:%S\n")
+    cur_date = now.strftime("%Y-%m-%d\n")
+    print("#Today is: ", cur_date)
+    print("#Current time: ", cur_time)
+    
+    data = HashTable()
+    distance = Distance()
+    route = Route(distance)
+    ts = Truck()
+    
+    # Sorting the packages into their respective trucks
+    ts.sort_packages_into_priorities(data.packages)
+
+    # optimize truck routes
+    optimized_truck_1 = route.optimize_route(ts.truck1)
+    optimized_truck_2 = route.optimize_route(ts.truck2)
+    optimized_truck_3 = route.optimize_route(ts.truck3)
+    
+    # Getting the timelines for each truck
+    truck_timeline_1 = distance.check_time(optimized_truck_1, 'truck1')
+    truck_timeline_2 = distance.check_time(optimized_truck_2, 'truck2')
+    truck_timeline_3 = distance.check_time(optimized_truck_3, 'truck3')
+    
+    # Calculate the total distance travelled by each truck
+    td1 = distance.get_total_distance_traveled(optimized_truck_1)
+    td2 = distance.get_total_distance_traveled(optimized_truck_2)
+    td3 = distance.get_total_distance_traveled(optimized_truck_3)
+    
+    # Calculate the total distance travelled by all trucks
+    total_distance = td1 + td2 + td3
+
+    # display package data
+    print("WGUPS Current Package Data")
+ 
+     # Display distance travelled by each truck and total distance travelled by all trucks
+    print("------------------------------------------------------------------------------------------------------------------------")
+    print("Truck 1 Distance: ", td1)
+    print("Truck 2 Distance: ", td2)
+    print("Truck 3 Distance: ", td3)
+    print("Total Distance:   ", total_distance)
+    print("------------------------------------------------------------------------------------------------------------------------")
+    #print("WGUPS Truck Data")
+    #print("------------------------------------------------------------------------------------------------------------------------")
+    #print("Truck ID | Total Packages | Total Distance | Total Time | Total Mileage")
+    #print("------------------------------------------------------------------------------------------------------------------------")
+
+    while True:
+        user_input = input("""
+    Please select an option below to begin or type 'quit' to quit:
+        1. Get info for all packages at a particular time
+        2. Get all packages current status
+        3. Get info for a single package at a particular time
+    """)
+#if user input is quit or q, exit the program
+        if  user_input in ['quit', 'q']:
+            print('Thank you for using WGUPS!')
+            break
+        
+        # Case if user selects Option #1
+        # Get info for all packages at a particular time -> O(n)
+        elif user_input == '1':
+            # Case if user selects Option #1
+            # Get info for all packages at a particular time
+            print('Please Enter a timestamp in the format of HH:MM\n')
+            pattern = re.compile("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")
+            ans = input()
+            if pattern.search(ans):
+                ans += ":00"
+                distance.display_data_from_time("TRUCK 1", optimized_truck_1, truck_timeline_1, ans, td1)
+                distance.display_data_from_time("TRUCK 2", optimized_truck_2, truck_timeline_2, ans, td2)
+                distance.display_data_from_time("TRUCK 3", optimized_truck_3, truck_timeline_3, ans, td3)
+            else:
+                print('Please enter timestamp info correctly matching the correct pattern')
+       
+                
+        elif user_input == '2':
+            # Case if user selects Option #2
+            # Get all packages current status
+            print("------------------------------------------------------------------------------------------------------------------------")
+            print("WGUPS Current Package Data")
+            print("Package ID | Address | City | State | Zip | Deadline | Weight | Status | Delivery Time | Notes")
+            print("------------------------------------------------------------------------------------------------------------------------")
+            distance.display_data_from_time("TRUCK 1", optimized_truck_1, truck_timeline_1, "", td1)
+            distance.display_data_from_time("TRUCK 2", optimized_truck_2, truck_timeline_2, "", td2)
+            distance.display_data_from_time("TRUCK 3", optimized_truck_3, truck_timeline_3, "", td3)
+            print('Total Distance = {} Miles\n'.format(total_distance))
+        
+        elif user_input == '3':
+            print('Please enter a package ID: ')
+            pattern = re.compile("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")
+            ans = int(input().strip())  # ensure you're reading this as an int
+            print('Please enter a specific time in HH:MM format: ')
+            specific_time = input().strip()
+            if pattern.search(specific_time):
+                    specific_time += ":00"
+                    search = ''
+                    truck = []
+                    truck_time = []
+                    truck_name = ''  # initialise the variable here
+
+                    for t in optimized_truck_1:
+                        if t.get_package_id() == ans:
+                            p = t
+                            search = ans
+                            truck = optimized_truck_1
+                            truck_time = truck_timeline_1
+                            truck_name = 'TRUCK 1'  # set the truck_name here
+                    for t in optimized_truck_2:
+                        if t.get_package_id() == ans:
+                            p = t
+                            search = ans
+                            truck = optimized_truck_2
+                            truck_time = truck_timeline_2
+                            truck_name = 'TRUCK 2'  # set the truck_name here
+                    for t in optimized_truck_3:
+                        if t.get_package_id() == ans:
+                            p = t
+                            search = ans
+                            truck = optimized_truck_3
+                            truck_time = truck_timeline_3
+                            truck_name = 'TRUCK 3'  # set the truck_name here
+
+                    if search != '':
+                        ed = distance.check_delivery_time(truck, truck_time, int(search))
+                        delivery_status = distance.check_delivery_status(specific_time, truck, truck_time, truck_name, int(search))
+                        print('ID: {} - Address: {} {}, {} - Deadline: {} - Weight: {} - Status: {} - Expected Delivery: {}\n'.format(p.get_package_id(), p.get_address(), p.get_city(), p.get_zip(), p.get_deadline(), p.get_weight(), delivery_status, ed))
+                    else:
+                        print("Please neter in correct format.\n")
+            else:
+                print("Sorry we didnt find a package with that ID number.\n")
+
+        else:
+            print("Invalid input, please select an option from the menu or type quit to quit.")
+    ############################################################################################
+            
+            
+            
+# from HashData import HashData
+# from Distance import Distance
+# from Route import Route
+# from TruckSort import TruckSort
+# import re
+
+# if __name__ == '__main__':
+#     # create objects and load csv data
+#     data = HashData()
+#     distance = Distance()
+#     route = Route(distance)
+#     ts = TruckSort()
+#     ts.sort_packages_into_priorities(data.packages)
+#     # optimize truck routes
+#     optimized_truck_1 = route.optimize_route(ts.truck1)
+#     optimized_truck_2 = route.optimize_route(ts.truck2)
+#     optimized_truck_3 = route.optimize_route(ts.truck3)
+#     truck_timeline_1 = distance.check_time(optimized_truck_1, 'truck1')
+#     truck_timeline_2 = distance.check_time(optimized_truck_2, 'truck2')
+#     truck_timeline_3 = distance.check_time(optimized_truck_3, 'truck3')
+#     # calc distance
+#     td1 = distance.get_total_distance_traveled(optimized_truck_1)
+#     td2 = distance.get_total_distance_traveled(optimized_truck_2)
+#     td3 = distance.get_total_distance_traveled(optimized_truck_3)
+#     total_distance = td1 + td2 + td3
+
+
+#     while(True):
+#         print("Please Enter a command\n'Report'\n'Lookup'\n'Timestamp\n'Exit'\n")
 #         start = input().lower()
 #         print(start)
 #         if start == 'exit':

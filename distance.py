@@ -54,11 +54,16 @@ class Distance:
     # convert string to time delta
     def get_delta_time(self, s):
         try:
-            (h, m, s) = s.split(':')
-            dt = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
+            if len(s.split(':')) == 2:  # If the string is in the format "HH:MM"
+                (h, m) = s.split(':')
+                dt = datetime.timedelta(hours=int(h), minutes=int(m))
+            else:  # If the string is in the format "HH:MM:SS"
+                (h, m, s) = s.split(':')
+                dt = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
             return dt
-        except:
-            print("Error converting to Time Delta")
+        except Exception as e:
+            print(f"Error converting {s} to Time Delta")
+            raise e
 
     # get specific time
     def check_delivery_time(self, truck, truck_time, id):
