@@ -1,133 +1,204 @@
-total_distance_1 = 0
-total_distance_2 = 0
-total_distance_3 = 0
+class package:
+    def __init__(self, package_id, address, city, state, zip, deadline, weight, status, notes):
+        self.package_id = int(package_id)
+        self.address = address
+        self.city = city
+        self.state = state
+        self.zip = zip
+        self.deadline = deadline
+        self.weight = weight
+        self.delivery_status = status
+        self.notes = notes
 
-import datetime
-import distance
-import csv_reader
-import distance
-from distance import Truck
-from distance import trucks
+    def get_package_id(self):
+        return self.package_id
 
- # Empty lists created
-first_delivery = []
-second_delivery = []
-third_delivery = []
-first_truck_distance = []
-second_truck_distance = []
-third_truck_distance = []
+    def get_address(self):
+        return self.address
+
+    def get_city(self):
+        return self.city
+
+    def get_state(self):
+        return self.state
+
+    def get_zip(self):
+        return self.zip
+
+    def get_deadline(self):
+        return self.deadline
+
+    def get_weight(self):
+        return self.weight
+
+    def get_delivery_status(self):
+        return self.delivery_status
+
+    def get_notes(self):
+        return self.notes
+
+    def set_delivery_status(self, status):
+        self.delivery_status = status
+
+    def set_address(self, address):
+        self.address = address
+
+    def set_city(self, set_city):
+        set_city
+
+    def set_zip(self, zip):
+        self.zip = zip
 
 
-# Create three Truck instances with corresponding IDs and leave times
-trucks = [Truck(1, '8:00:00'), Truck(2, '9:10:00'), Truck(3, '11:00:00')]
 
 
-# Times the trucks leave the hub
-first_leave_times = ['8:00:00']
-second_leave_times = ['9:10:00']
-third_leave_times = ['11:00:00']
 
-# Set delivery_start to first_leave_time for all truck one packages -> O(n)
-for index, value in enumerate(csv_reader.get_first_delivery()):
-    csv_reader.get_first_delivery()[index][9] = first_leave_times[0]
-    first_delivery.append(csv_reader.get_first_delivery()[index])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# total_distance_1 = 0
+# total_distance_2 = 0
+# total_distance_3 = 0
+
+# import datetime
+# import distance
+# import csv_reader
+# import distance
+# from distance import Truck
+# from distance import trucks
+
+#  # Empty lists created
+# first_delivery = []
+# second_delivery = []
+# third_delivery = []
+# first_truck_distance = []
+# second_truck_distance = []
+# third_truck_distance = []
+
+
+# # Create three Truck instances with corresponding IDs and leave times
+# trucks = [Truck(1, '8:00:00'), Truck(2, '9:10:00'), Truck(3, '11:00:00')]
+
+
+# # Times the trucks leave the hub
+# first_leave_times = ['8:00:00']
+# second_leave_times = ['9:10:00']
+# third_leave_times = ['11:00:00']
+
+# # Set delivery_start to first_leave_time for all truck one packages -> O(n)
+# for index, value in enumerate(csv_reader.get_first_delivery()):
+#     csv_reader.get_first_delivery()[index][9] = first_leave_times[0]
+#     first_delivery.append(csv_reader.get_first_delivery()[index])
     
-# Compare truck one addresses to address list -> O(n^2)
-for index, outer in enumerate(first_delivery):
-    for inner in distance.get_address():
-        if outer[2] == inner[2]:
-            first_truck_distance.append(outer[0])
-            first_delivery[index][1] = inner[0]
+# # Compare truck one addresses to address list -> O(n^2)
+# for index, outer in enumerate(first_delivery):
+#     for inner in distance.get_address():
+#         if outer[2] == inner[2]:
+#             first_truck_distance.append(outer[0])
+#             first_delivery[index][1] = inner[0]
 
-# Call algorithm to sort packages for first truck
-distance.get_shortest_route(first_delivery, 1, 0)
-total_distance_1 = 0
+# # Call algorithm to sort packages for first truck
+# distance.get_shortest_route(first_delivery, 1, 0)
+# total_distance_1 = 0
 
-# Calculate total distance of the first truck and distance of each package -> O(n)
-for index in range(len(distance.first_truck_index())):
-    try:
-        total_distance_1 = distance.get_distance(int(distance.first_truck_index()[index]), int(distance.first_truck_index()[index + 1]), total_distance_1)
+# # Calculate total distance of the first truck and distance of each package -> O(n)
+# for index in range(len(distance.first_truck_index())):
+#     try:
+#         total_distance_1 = distance.get_distance(int(distance.first_truck_index()[index]), int(distance.first_truck_index()[index + 1]), total_distance_1)
         
-        deliver_package = distance.get_time(distance.get_current_distance(int(distance.first_truck_index()[index]), int(distance.first_truck_index()[index + 1])), first_leave_times)
-        distance.first_truck_list()[index][10] = (str(deliver_package))
-        csv_reader.get_hash_table().update(int(distance.first_truck_list()[index][0]), first_delivery)
-    except IndexError:
-        pass
+#         deliver_package = distance.get_time(distance.get_current_distance(int(distance.first_truck_index()[index]), int(distance.first_truck_index()[index + 1])), first_leave_times)
+#         distance.first_truck_list()[index][10] = (str(deliver_package))
+#         csv_reader.get_hash_table().update(int(distance.first_truck_list()[index][0]), first_delivery)
+#     except IndexError:
+#         pass
 
-# Set delivery_start to second_leave_time for all truck two packages -> O(n)
-for index, value in enumerate(csv_reader.get_second_delivery()):
-    csv_reader.get_second_delivery()[index][9] = second_leave_times[0]
-    second_delivery.append(csv_reader.get_second_delivery()[index])
+# # Set delivery_start to second_leave_time for all truck two packages -> O(n)
+# for index, value in enumerate(csv_reader.get_second_delivery()):
+#     csv_reader.get_second_delivery()[index][9] = second_leave_times[0]
+#     second_delivery.append(csv_reader.get_second_delivery()[index])
 
-# Compare truck two addresses to address list -> O(n^2)
-for index, outer in enumerate(second_delivery):
-    for inner in distance.get_address():
-        if outer[2] == inner[2]:
-            second_truck_distance.append(outer[0])
-            second_delivery[index][1] = inner[0]
+# # Compare truck two addresses to address list -> O(n^2)
+# for index, outer in enumerate(second_delivery):
+#     for inner in distance.get_address():
+#         if outer[2] == inner[2]:
+#             second_truck_distance.append(outer[0])
+#             second_delivery[index][1] = inner[0]
 
-# Call algorithm to sort packages for second truck
-distance.get_shortest_route(second_delivery, 2, 0)
-total_distance_2 = 0
+# # Call algorithm to sort packages for second truck
+# distance.get_shortest_route(second_delivery, 2, 0)
+# total_distance_2 = 0
 
-# Calculate total distance of the second truck and distance of each package -> O(n)
-for index in range(len(distance.second_truck_index())):
-    try:
-        total_distance_2 = distance.get_distance(int(distance.second_truck_index()[index]), int(distance.second_truck_index()[index + 1]), total_distance_2)
+# # Calculate total distance of the second truck and distance of each package -> O(n)
+# for index in range(len(distance.second_truck_index())):
+#     try:
+#         total_distance_2 = distance.get_distance(int(distance.second_truck_index()[index]), int(distance.second_truck_index()[index + 1]), total_distance_2)
         
-        deliver_package = distance.get_time(distance.get_current_distance(int(distance.second_truck_index()[index]), int(distance.second_truck_index()[index + 1])), second_leave_times)
-        distance.second_truck_list()[index][10] = (str(deliver_package))
-        csv_reader.get_hash_table().update(int(distance.second_truck_list()[index][0]), second_delivery)
-    except IndexError:
-        pass
+#         deliver_package = distance.get_time(distance.get_current_distance(int(distance.second_truck_index()[index]), int(distance.second_truck_index()[index + 1])), second_leave_times)
+#         distance.second_truck_list()[index][10] = (str(deliver_package))
+#         csv_reader.get_hash_table().update(int(distance.second_truck_list()[index][0]), second_delivery)
+#     except IndexError:
+#         pass
 
-# Set delivery_start to third_leave_time for all truck three packages -> O(n)
-for index, value in enumerate(csv_reader.get_final_delivery()):
-    csv_reader.get_final_delivery()[index][9] = third_leave_times[0]
-    third_delivery.append(csv_reader.get_final_delivery()[index])
+# # Set delivery_start to third_leave_time for all truck three packages -> O(n)
+# for index, value in enumerate(csv_reader.get_final_delivery()):
+#     csv_reader.get_final_delivery()[index][9] = third_leave_times[0]
+#     third_delivery.append(csv_reader.get_final_delivery()[index])
 
-# Compare truck three addresses to address list -> O(n^2)
-for index, outer in enumerate(third_delivery):
-    for inner in distance.get_address():
-        if outer[2] == inner[2]:
-            third_truck_distance.append(outer[0])
-            third_delivery[index][1] = inner[0]
+# # Compare truck three addresses to address list -> O(n^2)
+# for index, outer in enumerate(third_delivery):
+#     for inner in distance.get_address():
+#         if outer[2] == inner[2]:
+#             third_truck_distance.append(outer[0])
+#             third_delivery[index][1] = inner[0]
 
-# Call algorithm to sort packages for third truck
-distance.get_shortest_route(third_delivery, 3, 0)
-total_distance_3 = 0
+# # Call algorithm to sort packages for third truck
+# distance.get_shortest_route(third_delivery, 3, 0)
+# total_distance_3 = 0
 
-# Calculate total distance of the third truck and distance of each package -> O(n)
-for index in range(len(distance.third_truck_index())):
-    try:
-        total_distance_3 = distance.get_distance(int(distance.third_truck_index()[index]), int(distance.third_truck_index()[index + 1]), total_distance_3)
+# # Calculate total distance of the third truck and distance of each package -> O(n)
+# for index in range(len(distance.third_truck_index())):
+#     try:
+#         total_distance_3 = distance.get_distance(int(distance.third_truck_index()[index]), int(distance.third_truck_index()[index + 1]), total_distance_3)
         
-        deliver_package = distance.get_time(distance.get_current_distance(int(distance.third_truck_index()[index]), int(distance.third_truck_index()[index + 1])), third_leave_times)
-        distance.third_truck_list()[index][10] = (str(deliver_package))
-        csv_reader.get_hash_table().update(int(distance.third_truck_list()[index][0]), third_delivery)
-    except IndexError:
-        pass
+#         deliver_package = distance.get_time(distance.get_current_distance(int(distance.third_truck_index()[index]), int(distance.third_truck_index()[index + 1])), third_leave_times)
+#         distance.third_truck_list()[index][10] = (str(deliver_package))
+#         csv_reader.get_hash_table().update(int(distance.third_truck_list()[index][0]), third_delivery)
+#     except IndexError:
+#         pass
 
-# Get distance of all packages -> O(1)
-def total_distance():
-    return total_distance_1 + total_distance_2 + total_distance_3
+# # Get distance of all packages -> O(1)
+# def total_distance():
+#     return total_distance_1 + total_distance_2 + total_distance_3
 
-for package in first_delivery:
-    trucks[0].add_package(package)
+# for package in first_delivery:
+#     trucks[0].add_package(package)
 
-for package in second_delivery:
-    trucks[1].add_package(package)
+# for package in second_delivery:
+#     trucks[1].add_package(package)
 
-for package in third_delivery:
-    trucks[2].add_package(package)
+# for package in third_delivery:
+#     trucks[2].add_package(package)
     
-trucks[0].update_total_distance(total_distance_1)
-trucks[1].update_total_distance(total_distance_2)
-trucks[2].update_total_distance(total_distance_3)
+# trucks[0].update_total_distance(total_distance_1)
+# trucks[1].update_total_distance(total_distance_2)
+# trucks[2].update_total_distance(total_distance_3)
 
-for truck in trucks:
-    truck.display_info()
-    
+# for truck in trucks:
+#     truck.display_info()
+    ##################################################################################################
 # class Package:
 #     def __init__(self, id, address, city, state, zip, deadline, weight, status, delivery_time, notes):
 #         self.id = id

@@ -1,3 +1,68 @@
+class Truck:
+    truck1 = []
+    truck2 = []
+    truck3 = []
+
+    # sort the packages onto the trucks - semi random
+    def sort_packages_into_priorities(self, packages):
+        priority_truck_1 = []
+        np_truck_1 = []
+        priority_truck_2 = []
+        np_truck_2 = []
+        non_priority = []
+        for p in packages:
+            notes = p.get_notes()
+            deadline = p.get_deadline()
+            address = p.get_address()
+
+            if id == 13 or id == 15 or id == 19:
+                priority_truck_1.append(p)
+            elif 'Can only be on' in notes or 'Delayed on flight' in notes:
+                priority_truck_2.append(p)
+            elif 'Wrong address listed' in notes:
+                p.set_address('410 S State St')
+                p.set_zip('84111')
+                non_priority.append(p)
+            elif 'Must be delivered' in notes and deadline != 'EOD':
+                priority_truck_1.append(p)
+            elif deadline != 'EOD':
+                ft_address = []
+                for t in priority_truck_1:
+                    ft_address.append(t.get_address())
+                if address in ft_address:
+                    np_truck_1.append(p)
+                else:
+                    np_truck_2.append(p)
+            elif '10:30' not in deadline:
+                non_priority.append(p)
+            else:
+                non_priority.append(p)
+
+        for t in priority_truck_1:
+            if len(self.truck1) < 16:
+                self.truck1.append(t)
+        for t in np_truck_1:
+            if len(self.truck1) < 16:
+                self.truck1.append(t)
+        for t in priority_truck_2:
+            if len(self.truck2) < 16:
+                self.truck2.append(t)
+        for t in np_truck_2:
+            if len(self.truck1) < 16:
+                self.truck1.append(t)
+            elif len(self.truck2) < 16:
+                self.truck2.append(t)
+            else:
+                self.truck3.append(t)
+        for t in non_priority:
+            if len(self.truck3) < 16:
+                self.truck3.append(t)
+            elif len(self.truck2) < 16:
+                self.truck2.append(t)
+            elif len(self.truck1) < 16:
+                self.truck1.append(t)
+            else:
+                print('Not enough room on trucks')
 # import csv
 # import datetime
 
@@ -135,49 +200,49 @@
 
 # if __name__=="__main__":
 #     print(create_trucks())
+##################################################################################
+# import csv
+# import datetime
 
-import csv
-import datetime
+# class Truck:
 
-class Truck:
+#     def __init__(self):
+#         self.truck = []
+#         self.truck_indices = []
 
-    def __init__(self):
-        self.truck = []
-        self.truck_indices = []
+#     def get_shortest_route(self, _list, curr_location):
+#         if not len(_list):
+#             return _list
 
-    def get_shortest_route(self, _list, curr_location):
-        if not len(_list):
-            return _list
+#         lowest_value = 50.0
+#         location = 0
 
-        lowest_value = 50.0
-        location = 0
+#         for i in _list:
+#             value = int(i[1])
+#             if self.get_current_distance(curr_location, value) <= lowest_value:
+#                 lowest_value = self.get_current_distance(curr_location, value)
+#                 location = value
 
-        for i in _list:
-            value = int(i[1])
-            if self.get_current_distance(curr_location, value) <= lowest_value:
-                lowest_value = self.get_current_distance(curr_location, value)
-                location = value
+#         for i in _list:
+#             if self.get_current_distance(curr_location, int(i[1])) == lowest_value:
+#                 self.truck.append(i)
+#                 self.truck_indices.append(i[1])
+#                 _list.pop(_list.index(i))
+#                 curr_location = location
+#                 self.get_shortest_route(_list, curr_location)
 
-        for i in _list:
-            if self.get_current_distance(curr_location, int(i[1])) == lowest_value:
-                self.truck.append(i)
-                self.truck_indices.append(i[1])
-                _list.pop(_list.index(i))
-                curr_location = location
-                self.get_shortest_route(_list, curr_location)
+#     def get_truck_indices(self):
+#         return self.truck_indices
 
-    def get_truck_indices(self):
-        return self.truck_indices
+#     def get_truck_list(self):
+#         return self.truck
 
-    def get_truck_list(self):
-        return self.truck
+#     # ... other functions (like get_current_distance, get_address, etc.) ...
 
-    # ... other functions (like get_current_distance, get_address, etc.) ...
-
-# read CSV files
-def read_csv():
-    with open('./c950/distance_data.csv') as csvfile_1:
-        distance_csv = list(csv.reader(csvfile_1, delimiter=','))
-    with open('./c950/distance_name_data.csv') as csvfile_2:
-        distance_name_csv = list(csv.reader(csvfile_2, delimiter=','))
-    return distance_csv, distance_name_csv
+# # read CSV files
+# def read_csv():
+#     with open('./c950/distance_data.csv') as csvfile_1:
+#         distance_csv = list(csv.reader(csvfile_1, delimiter=','))
+#     with open('./c950/distance_name_data.csv') as csvfile_2:
+#         distance_name_csv = list(csv.reader(csvfile_2, delimiter=','))
+#     return distance_csv, distance_name_csv
