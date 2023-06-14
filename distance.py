@@ -107,11 +107,13 @@ class Distance:
 
     # display data based off time input
     def display_data_from_time(self, name, truck, truck_timeline, time, distance):
+        print('====================================================================================================')
         print('\n{} || # of packages: {} || Total Distance: {} miles\n'.format(name, len(truck), distance))
         if time == '':
             timestamp = '23:00:00'
         else:
             timestamp = time
+        print('ID        Deadline            Status               Expected Delivery')
         for t in truck:
             i = truck.index(t)
             id = t.get_package_id()
