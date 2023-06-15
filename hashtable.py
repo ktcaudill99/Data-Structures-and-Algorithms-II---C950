@@ -134,27 +134,13 @@ class HashTable:
     #         if package.get_delivery_status().lower() == status.lower():
     #             result.append(package)
     #     return result
-    # def lookup_by_status(self, status):
-    #     result = []
-    #     for package_list in self.packages:
-    #         for package in package_list:
-    #             if package.get_delivery_status().lower() == status.lower():
-    #                 result.append(package)
-    #     return result
     def lookup_by_status(self, status):
         result = []
-        for element in self.packages:
-            # If the element is a list, iterate over it
-            if isinstance(element, list):
-                for package in element:
-                    if package.get_delivery_status().lower() == status.lower():
-                        result.append(package)
-            # If the element is a Package object, check its status
-            elif isinstance(element, Package):
-                if element.get_delivery_status().lower() == status.lower():
-                    result.append(element)
-        return result if result else "No package with the status '{}' found.".format(status)
-
+        for package_list in self.packages:
+            for package in package_list:
+                if package.get_delivery_status().lower() == status.lower():
+                    result.append(package)
+        return result
 
     # read package data from csv to hash map
     def parse_csv(self, path, file_name):

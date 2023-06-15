@@ -607,6 +607,32 @@ class Main:
     
     # Calculate the total distance travelled by all trucks
     total_distance = td1 + td2 + td3
+    
+    # Define the get_package_status function outside of the Main class
+    def get_package_status(package, truck1, truck2, truck3, current_time):
+        if package.get_package_id() in [p.get_package_id() for p in truck1]:
+            truck = truck1
+        elif package.get_package_id() in [p.get_package_id() for p in truck2]:
+            truck = truck2
+        elif package.get_package_id() in [p.get_package_id() for p in truck3]:
+            truck = truck3
+        else:
+            return "Package not found on any truck"
+        
+        for p in truck:
+            if p.get_package_id() == package.get_package_id():
+                if p.get_delivery_status() == "DELIVERED":
+                    return "DELIVERED"
+                elif p.get_delivery_status() == "EN ROUTE":
+                    for i in range(len(truck)):
+                        if truck[i].get_package_id() == package.get_package_id():
+                            if truck[i].get_delivery_status() == "EN ROUTE":
+                                if truck[i].get_delivery_time() <= current_time:
+                                    return "AT HUB"
+                                else:
+                                    return "EN ROUTE"
+                else:
+                    return "AT HUB"
 
     # display package data
     print("WGUPS Current Truck Data")
@@ -640,7 +666,6 @@ class Main:
          8. Look up package data by zip code
          9. Look up package data by weight
         10. Look up package data by deadline
-        11. Look up package data by status (“at hub” “in route” “delivered”) 
     """)
         #10 include the delivery time
 #if user input is quit or q, exit the program
@@ -666,15 +691,10 @@ class Main:
        
                 
         elif user_input == '2':
-            # Case if user selects Option #2
-            # Get all packages current status
-            # print("------------------------------------------------------------------------------------------------------------------------")
-            # print("WGUPS Current Package Data")
-            # print("Package ID | Address | City | State | Zip | Deadline | Weight | Status | Delivery Time | Notes")
-            # print("------------------------------------------------------------------------------------------------------------------------")
             distance.display_data_from_time("TRUCK 1", optimized_truck_1, truck_timeline_1, "", td1)
             distance.display_data_from_time("TRUCK 2", optimized_truck_2, truck_timeline_2, "", td2)
             distance.display_data_from_time("TRUCK 3", optimized_truck_3, truck_timeline_3, "", td3)
+
             print('\n====================================================================================================')
             print('Total Distance = {} Miles\n'.format(total_distance))
         
@@ -682,11 +702,12 @@ class Main:
             print('Please enter a package ID: ')
             pattern = re.compile("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")
             ans = int(input().strip())  # ensure you're reading this as an int
-            print('Please enter a specific time in HH:MM format: ')
+            print('\nPlease enter a specific time in HH:MM format: ')
             specific_time = input().strip()
             if pattern.search(specific_time):
                     specific_time += ":00"
                     search = ''
+                    print()
                     truck = []
                     truck_time = []
                     truck_name = ''  # initialise the variable here
@@ -721,23 +742,54 @@ class Main:
                         print("Please neter in correct format.\n")
             else:
                 print("Sorry we didnt find a package with that ID number.\n")
-                
-    ###########################################################
-   ## make these work. fix it. fix it. fix it.
-   #################################################
+
         elif user_input == '4':
         # Get all packages data
+            print('============================================================================================================================================================================ \n')
+            print('All Package Data')
+            print('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+            print('{:<4s}{:<40s}{:<18s}{:<7s}{:<10s}{:<10s}{:<8s}{:<8s}{:<20s}'.format('ID', 'Address', 'City', 'State', 'Zip', 'Deadline', 'Weight', 'Status', 'Notes'))
+            print('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+            
             for p in data.packages:
-                print(p.__dict__)
+                current_status = get_package_status(p, optimized_truck_1, optimized_truck_2, optimized_truck_3, cur_time)
+                print('{:<4s}{:<40s}{:<18s}{:<7s}{:<10s}{:<10s}{:<8s}{:<8s}{:<20s}'.format(
+                    str(p.package_id), 
+                    p.address, 
+                    p.city, 
+                    p.state,
+                    p.zip,
+                    p.deadline, 
+                    str(p.weight), 
+                    current_status,
+                    p.notes if p.notes else ''
+                ))
+            
+            print('============================================================================================================================================================================ \n')
 
         elif user_input == '5':
             # Look up package data by ID
             package_id = int(input("Please enter a package ID: "))
             package = data.lookup_by_id(package_id)
             if package:
-                print(package.__dict__)
+                print('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+                print('{:<4s}{:<40s}{:<18s}{:<7s}{:<10s}{:<10s}{:<8s}{:<8s}{:<20s}'.format('ID', 'Address', 'City', 'State', 'Zip', 'Deadline', 'Weight', 'Status', 'Notes'))
+                print('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+                print('{:<4s}{:<40s}{:<18s}{:<7s}{:<10s}{:<10s}{:<8s}{:<8s}{:<20s}'.format(
+                    str(package.package_id), 
+                    package.address, 
+                    package.city, 
+                    package.state,
+                    package.zip,
+                    package.deadline, 
+                    str(package.weight), 
+                    package.delivery_status,
+                    package.notes if package.notes else ''
+                ))
+                print('============================================================================================================================================================================')
             else:
                 print("Package not found.")
+
 
         elif user_input == '6':
             # Look up package data by address
@@ -788,19 +840,6 @@ class Main:
             if packages:
                 for package in packages:
                     print(package.__dict__)
-            else:
-                print("Package not found.")
-
-        elif user_input == '11':
-            # Look up package data by status (“at hub” “in route” “delivered”)
-            status = input("Please enter a status (e.g., 'at hub', 'in route', 'delivered'): ")
-            packages = data.lookup_by_status(status)
-            if packages:
-                for package in packages:
-                    if isinstance(package, Package):
-                        print(package.__dict__)
-                    else:
-                        print(package)
             else:
                 print("Package not found.")
 

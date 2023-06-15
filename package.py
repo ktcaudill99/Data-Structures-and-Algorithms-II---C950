@@ -1,3 +1,4 @@
+
 class Package:
     def __init__(self, package_id, address, city, state, zip, deadline, weight, status, notes):
         self.package_id = int(package_id)
@@ -48,6 +49,37 @@ class Package:
 
     def set_zip(self, zip):
         self.zip = zip
+
+    def calculate_expected_delivery(self, truck1, truck2, truck3):
+            delivery_time = 0
+            if self.get_delivery_status() == 'AT_HUB':
+                delivery_time += 0
+            elif self.get_delivery_status() == 'DELIVERED':
+                delivery_time += 0
+            else:
+                truck = None
+                if self in truck1:
+                    truck = truck1
+                elif self in truck2:
+                    truck = truck2
+                elif self in truck3:
+                    truck = truck3
+                if truck is not None:
+                    index = truck.index(self)
+                    if index == 0:
+                        delivery_time += 0
+                    else:
+                        distance = 0
+                        for i in range(index):
+                            prev_package = truck[i]
+                            cur_package = truck[i + 1]
+                            distance += Distance().check_distance(
+                                Distance().check_location_num_from_address(prev_package.get_address()),
+                                Distance().check_location_num_from_address(cur_package.get_address())
+                            )
+                        delivery_time += distance / 18
+            return delivery_time
+
 
 
 
