@@ -769,7 +769,13 @@ class Main:
 
         elif user_input == '5':
             # Look up package data by ID
-            package_id = int(input("Please enter a package ID: "))
+            while True:
+                try:
+                    package_id = int(input("Please enter a package ID: "))
+                    break
+                except ValueError:
+                    print("Invalid input. Please enter a number for the package ID.")
+
             package = data.lookup_by_id(package_id)
             if package:
                 print('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
@@ -806,42 +812,123 @@ class Main:
             city = input("Please enter a city: ")
             packages = data.lookup_by_city(city)
             if packages:
+                print('============================================================================================================================================================================ \n')
+                print('All Packages in {}:'.format(city))
+                print('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+                print('{:<4s}{:<40s}{:<18s}{:<7s}{:<10s}{:<10s}{:<8s}{:<8s}{:<20s}'.format(
+                    'ID', 'Address', 'City', 'State', 'Zip', 'Deadline', 'Weight', 'Status', 'Notes'
+                ))
+                print('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
                 for package in packages:
-                    print(package.__dict__)
+                    print('{:<4s}{:<40s}{:<18s}{:<7s}{:<10s}{:<10s}{:<8s}{:<8s}{:<20s}'.format(
+                        str(package.package_id), 
+                        package.address, 
+                        package.city, 
+                        package.state,
+                        package.zip,
+                        package.deadline, 
+                        str(package.weight), 
+                        package.delivery_status,
+                        package.notes if package.notes else ''
+                    ))
+                print('============================================================================================================================================================================')
             else:
-                print("Package not found.")
+                print("No packages found in {}.".format(city))
+
 
         elif user_input == '8':
-            # Look up package data by zip code
+        # Look up package data by zip code
             zip_code = input("Please enter a zip code: ")
             packages = data.lookup_by_zip(zip_code)
             if packages:
+                print('============================================================================================================================================================================ \n')
+                print('All Packages in Zip Code {}:'.format(zip_code))
+                print('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+                print('{:<4s}{:<40s}{:<18s}{:<7s}{:<10s}{:<10s}{:<8s}{:<8s}{:<20s}'.format(
+                    'ID', 'Address', 'City', 'State', 'Zip', 'Deadline', 'Weight', 'Status', 'Notes'
+                ))
+                print('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
                 for package in packages:
-                    print(package.__dict__)
+                    print('{:<4s}{:<40s}{:<18s}{:<7s}{:<10s}{:<10s}{:<8s}{:<8s}{:<20s}'.format(
+                        str(package.package_id), 
+                        package.address, 
+                        package.city, 
+                        package.state,
+                        package.zip,
+                        package.deadline, 
+                        str(package.weight), 
+                        package.delivery_status,
+                        package.notes if package.notes else ''
+                    ))
+                print('============================================================================================================================================================================')
             else:
-                print("Package not found.")
+                print("No packages found in Zip Code {}.".format(zip_code))
+
 
         elif user_input == '9':
-            # Look up package data by weight
-            weight = int(input("Please enter a weight (e.g., '10'): "))
+             # Look up package data by weight
+            while True:
+                try:
+                    weight = int(input("Please enter a weight (e.g., '10'): "))
+                    break
+                except ValueError:
+                    print("Invalid input. Please enter a number for the weight.")
+            
             packages = data.lookup_by_weight(weight)
             if isinstance(packages, list):  # Check if 'packages' is a list
+                print('============================================================================================================================================================================ \n')
+                print('All Packages with Weight {}:'.format(weight))
+                print('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+                print('{:<4s}{:<40s}{:<18s}{:<7s}{:<10s}{:<10s}{:<8s}{:<8s}{:<20s}'.format(
+                    'ID', 'Address', 'City', 'State', 'Zip', 'Deadline', 'Weight', 'Status', 'Notes'
+                ))
+                print('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
                 for package in packages:
-                    print(package.__dict__)
+                    print('{:<4s}{:<40s}{:<18s}{:<7s}{:<10s}{:<10s}{:<8s}{:<8s}{:<20s}'.format(
+                        str(package.package_id), 
+                        package.address, 
+                        package.city, 
+                        package.state,
+                        package.zip,
+                        package.deadline, 
+                        str(package.weight), 
+                        package.delivery_status,
+                        package.notes if package.notes else ''
+                    ))
+                print('============================================================================================================================================================================')
             else:
-                print(packages)  # 'packages' is a string indicating no package was found
+                print(packages)  # 'packages' is a string indicating no package was found with the given weight
+
 
 
         elif user_input == '10':
             # Look up package data by deadline
             deadline = input("Please enter a deadline (e.g., '9:00', '10:30' or 'EOD'): ")
             packages = data.lookup_by_deadline(deadline)
-            print(packages)
             if packages:
+                print('============================================================================================================================================================================ \n')
+                print('All Packages with Deadline {}:'.format(deadline))
+                print('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+                print('{:<4s}{:<40s}{:<18s}{:<7s}{:<10s}{:<10s}{:<8s}{:<8s}{:<20s}'.format(
+                    'ID', 'Address', 'City', 'State', 'Zip', 'Deadline', 'Weight', 'Status', 'Notes'
+                ))
+                print('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
                 for package in packages:
-                    print(package.__dict__)
+                    print('{:<4s}{:<40s}{:<18s}{:<7s}{:<10s}{:<10s}{:<8s}{:<8s}{:<20s}'.format(
+                        str(package.package_id), 
+                        package.address, 
+                        package.city, 
+                        package.state,
+                        package.zip,
+                        package.deadline, 
+                        str(package.weight), 
+                        package.delivery_status,
+                        package.notes if package.notes else ''
+                    ))
+                print('============================================================================================================================================================================')
             else:
-                print("Package not found.")
+                print("No packages found with Deadline {}.".format(deadline))
+
 
 
         else:

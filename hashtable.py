@@ -52,8 +52,13 @@ class HashTable:
     def lookup_by_address(self, address):
         result = []
         for package in self.packages:
-            if package.get_address() == address:
-                result.append(package)
+            if isinstance(package, list):
+                for p in package:
+                    if p.get_address() == address:
+                        result.append(p)
+            else:
+                if package.get_address() == address:
+                    result.append(package)
         return result
 
     def lookup_by_city(self, city):
