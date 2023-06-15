@@ -573,6 +573,7 @@ from route import Route
 from truck import Truck
 import re
 import datetime
+from package import Package
 
 class Main:
     now = datetime.datetime.now()
@@ -770,18 +771,20 @@ class Main:
 
         elif user_input == '9':
             # Look up package data by weight
-            weight = int(input("Please enter a weight: "))
+            weight = int(input("Please enter a weight (e.g., '10'): "))
             packages = data.lookup_by_weight(weight)
-            if packages:
+            if isinstance(packages, list):  # Check if 'packages' is a list
                 for package in packages:
                     print(package.__dict__)
             else:
-                print("Package not found.")
+                print(packages)  # 'packages' is a string indicating no package was found
+
 
         elif user_input == '10':
             # Look up package data by deadline
-            deadline = input("Please enter a deadline in the format HH:MM AM/PM: ")
+            deadline = input("Please enter a deadline (e.g., '9:00', '10:30' or 'EOD'): ")
             packages = data.lookup_by_deadline(deadline)
+            print(packages)
             if packages:
                 for package in packages:
                     print(package.__dict__)
@@ -790,11 +793,14 @@ class Main:
 
         elif user_input == '11':
             # Look up package data by status (“at hub” “in route” “delivered”)
-            status = input("Please enter a status (at hub, in route, delivered): ")
+            status = input("Please enter a status (e.g., 'at hub', 'in route', 'delivered'): ")
             packages = data.lookup_by_status(status)
             if packages:
                 for package in packages:
-                    print(package.__dict__)
+                    if isinstance(package, Package):
+                        print(package.__dict__)
+                    else:
+                        print(package)
             else:
                 print("Package not found.")
 
