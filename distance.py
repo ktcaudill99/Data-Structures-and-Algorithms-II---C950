@@ -1,6 +1,9 @@
 import csv
 import datetime
 
+# Distance class to get distance data and time data for trucks and packages 
+# from csv files and compare them to each other to get the correct data 
+# for the user to see on the console output screen 
 
 class Distance:
     # get distance name data
@@ -121,6 +124,7 @@ class Distance:
             s = 'ID: {:>2} -- Deadline: {:>6} -- Status: {:>6} -- Expected Delivery: {}'
             formatted_string = s.format(id, t.get_deadline(), ds, truck_timeline[i + 1])
             print(formatted_string)
+
 
 
 

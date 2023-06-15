@@ -1,3 +1,13 @@
+# class Package is a class that represents a package. It has a constructor that takes in the following parameters:
+#     package_id: the package's ID number (int) 
+#     address: the package's address (str)
+#     city: the package's city (str)
+#     state: the package's state (str)
+#     zip: the package's zip code (str)
+#     deadline: the package's deadline (str)
+#     weight: the package's weight (str)
+#     status: the package's delivery status (str)
+#     notes: the package's notes (str)
 
 class Package:
     def __init__(self, package_id, address, city, state, zip, deadline, weight, status, notes):
@@ -50,3 +60,5 @@ class Package:
     def set_zip(self, zip):
         self.zip = zip
 
+    def set_deadline(self, deadline):
+        self.deadline = deadline    
