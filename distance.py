@@ -1,3 +1,7 @@
+#Katherine Caudill
+#Student #: 005252042
+#WGU: Data Structures and Algorithms II - C950
+
 import csv
 import datetime
 

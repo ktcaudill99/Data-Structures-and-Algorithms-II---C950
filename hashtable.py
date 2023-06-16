@@ -1,3 +1,7 @@
+#Katherine Caudill
+#Student #: 005252042
+#WGU: Data Structures and Algorithms II - C950
+
 # HashTable class using chaining.
 import csv
 import os

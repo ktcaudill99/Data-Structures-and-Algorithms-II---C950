@@ -1,3 +1,7 @@
+#Katherine Caudill
+#Student #: 005252042
+#WGU: Data Structures and Algorithms II - C950
+
 # class Package is a class that represents a package. It has a constructor that takes in the following parameters:
 #     package_id: the package's ID number (int) 
 #     address: the package's address (str)

@@ -1,3 +1,7 @@
+#Katherine Caudill
+#Student #: 005252042
+#WGU: Data Structures and Algorithms II - C950
+
 # get current location of truck and check distance to next location 
 # and time to get there and return time to get there 
 

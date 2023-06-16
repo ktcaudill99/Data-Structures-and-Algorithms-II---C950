@@ -1,3 +1,7 @@
+#Katherine Caudill
+#Student #: 005252042
+#WGU: Data Structures and Algorithms II - C950
+
 class Route:
 
     def __init__(self, distance):
